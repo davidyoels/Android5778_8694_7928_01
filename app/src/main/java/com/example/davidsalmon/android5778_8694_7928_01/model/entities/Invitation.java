@@ -5,4 +5,6 @@ package com.example.davidsalmon.android5778_8694_7928_01.model.entities;
  */
 
 public class Invitation {
+
+
 }
