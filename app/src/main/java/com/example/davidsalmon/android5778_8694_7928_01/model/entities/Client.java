@@ -11,7 +11,7 @@ public class Client {
     private String PrivateName;
     private long Id;
     private String PhoneNumber;
-    private ContactsContract.CommonDataKinds.Email email;
+    private String email;
     private long CreditCard;
 
     // default constructor.
@@ -19,7 +19,7 @@ public class Client {
     }
 
     //constructor.
-    public Client(String familyName, String privateName, long id, String phoneNumber, ContactsContract.CommonDataKinds.Email email, long creditCard) {
+    public Client(String familyName, String privateName, long id, String phoneNumber, String email, long creditCard) {
         FamilyName = familyName;
         PrivateName = privateName;
         Id = id;
@@ -80,14 +80,14 @@ public class Client {
     /**
      * @return the client email.
      */
-    public ContactsContract.CommonDataKinds.Email getEmail() {
+    public String getEmail() {
         return email;
     }
 
     /**
      * @param email to change the current email.
      */
-    public void setEmail(ContactsContract.CommonDataKinds.Email email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -103,5 +103,10 @@ public class Client {
      */
     public void setCreditCard(long creditCard) {
         CreditCard = creditCard;
+    }
+
+    public String toString()
+    {
+        return "Name: " + PrivateName + " " + FamilyName + " Id: " + Id + " Phone Number: " + PhoneNumber + " Email: " + email + " Credit Card: " + CreditCard;
     }
 }

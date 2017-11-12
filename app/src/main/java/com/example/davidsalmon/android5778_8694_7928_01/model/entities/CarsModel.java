@@ -1,9 +1,5 @@
 package com.example.davidsalmon.android5778_8694_7928_01.model.entities;
 
-/**
- * Created by david salmon on 11/2/2017.
- */
-enum Gearbox {Manual, Automaton}
 public class CarsModel {
 
     private int ModelCode;
@@ -12,7 +8,7 @@ public class CarsModel {
     private int EngineCapacity;
     private Gearbox GearBox;
     private int SeatsNumber;
-    //default constrcutor
+    //default constructor
     public CarsModel(){}
 
     public CarsModel(int modelCode, String companyName, String modelName, int engineCapacity, Gearbox gearBox, int seatsNumber) {
@@ -118,7 +114,9 @@ public class CarsModel {
         SeatsNumber = seatsNumber;
     }
 
-
-
+    public String toString()
+    {
+        return "Model Code: " + ModelCode + " Company Name: " + CompanyName + " Model Name: " + ModelName + "Engine Capacity: " + " Gear Box: " + GearBox + " Seat Numbers: " + SeatsNumber;
+    }
 
 }

@@ -9,7 +9,7 @@ import java.util.List;
  */
 
 public interface DB_manager {
-    //to write all the function he said to writre on BackEnd.
+
     boolean UserExistsOnDataBase(Client client);
     void addUser(Client newUser);
     void addModel(CarsModel newModel);
@@ -18,6 +18,15 @@ public interface DB_manager {
     List<Client> AllUsers();
     List<Branch> AllBranch();
     List<Car> AllCars();
+
+    //functions we added
+    void addBranch(Branch branch);
+    /*boolean CarModelAvailable();
+    boolean addInvitaion();
+    boolean removeClient();
+    boolean removeCar();
+    boolean removeCarModel();
+    boolean removeInvitation();*/
 
 
 

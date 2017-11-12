@@ -83,5 +83,8 @@ public class Car {
         CarNumber = carNumber;
     }
 
-
+    public String toString()
+    {
+        return "Branch Number: " + BranchNumber + " Model Type: " + ModelType + " Kilometers: " + Kilometers + " Car Number: " + CarNumber;
+    }
 }

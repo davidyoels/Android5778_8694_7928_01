@@ -46,6 +46,8 @@ public class List_DBManager implements DB_manager{
         cars.add(newCar);
     }
     @Override
+    public void addBranch(Branch branch) { branchs.add(branch);}
+    @Override
     public List<CarsModel> AllCarsModel()
     {
         return carsModels;
