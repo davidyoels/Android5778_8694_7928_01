@@ -19,11 +19,11 @@ public class List_DBManager implements DB_manager{
     static List<Invitation> invitations;
 
     static {
-        branchs = new ArrayList<Branch>();
-        cars = new ArrayList<Car>();
-        carsModels = new ArrayList<CarsModel>();
-        clients = new ArrayList<Client>();
-        invitations = new ArrayList<Invitation>();
+        branchs = new ArrayList<>();
+        cars = new ArrayList<>();
+        carsModels = new ArrayList<>();
+        clients = new ArrayList<>();
+        invitations = new ArrayList<>();
     }
     @Override
     public boolean UserExistsOnDataBase(Client client){
