@@ -1,4 +1,4 @@
-package com.example.davidsalmon.android5778_8694_7928_01;
+package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.*;
