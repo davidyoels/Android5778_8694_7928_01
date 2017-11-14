@@ -116,11 +116,11 @@ public class Branch {
     public static ContentValues BranchToContentValues(Branch branch){
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Car_GoConst.BrachConst.CITY, branch.getCity());
-        contentValues.put(Car_GoConst.BrachConst.STREET, branch.getStreet());
-        contentValues.put(Car_GoConst.BrachConst.BUILDING_NUMBER, branch.getBuildingNumber());
-        contentValues.put(Car_GoConst.BrachConst.PARKING_SPACE_NUMBER, branch.getParkingSpacesNumber());
-        contentValues.put(Car_GoConst.BrachConst.BRANCH_NUMBER, branch.BranchNumber);
+        contentValues.put(Car_GoConst.BranchConst.CITY, branch.getCity());
+        contentValues.put(Car_GoConst.BranchConst.STREET, branch.getStreet());
+        contentValues.put(Car_GoConst.BranchConst.BUILDING_NUMBER, branch.getBuildingNumber());
+        contentValues.put(Car_GoConst.BranchConst.PARKING_SPACE_NUMBER, branch.getParkingSpacesNumber());
+        contentValues.put(Car_GoConst.BranchConst.BRANCH_NUMBER, branch.BranchNumber);
 
         return contentValues;
     }
@@ -128,11 +128,11 @@ public class Branch {
     public static Branch ContentValuesToBranch(ContentValues contentValues){
 
         Branch branch = new Branch();
-        branch.setCity(contentValues.getAsString(Car_GoConst.BrachConst.CITY));
-        branch.setStreet(contentValues.getAsString(Car_GoConst.BrachConst.STREET));
-        branch.setBuildingNumber(contentValues.getAsInteger(Car_GoConst.BrachConst.BUILDING_NUMBER));
-        branch.setParkingSpacesNumber(contentValues.getAsInteger(Car_GoConst.BrachConst.PARKING_SPACE_NUMBER));
-        branch.setBranchNumber(contentValues.getAsInteger(Car_GoConst.BrachConst.BRANCH_NUMBER));
+        branch.setCity(contentValues.getAsString(Car_GoConst.BranchConst.CITY));
+        branch.setStreet(contentValues.getAsString(Car_GoConst.BranchConst.STREET));
+        branch.setBuildingNumber(contentValues.getAsInteger(Car_GoConst.BranchConst.BUILDING_NUMBER));
+        branch.setParkingSpacesNumber(contentValues.getAsInteger(Car_GoConst.BranchConst.PARKING_SPACE_NUMBER));
+        branch.setBranchNumber(contentValues.getAsInteger(Car_GoConst.BranchConst.BRANCH_NUMBER));
         return branch;
     }
 
