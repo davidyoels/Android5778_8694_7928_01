@@ -5,6 +5,7 @@ package com.example.davidsalmon.android5778_8694_7928_01.model.entities;
  */
 
 public class Car {
+    //
     private int BranchNumber;
     private String ModelType;
     private int Kilometers;
