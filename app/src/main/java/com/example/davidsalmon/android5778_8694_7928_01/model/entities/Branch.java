@@ -108,7 +108,7 @@ public class Branch {
 
     public String toString()
     {
-        return " City: " + City + " Street: " + Street + " Building Number: " + BuildingNumber + " Parking Spaces: " + ParkingSpacesNumber + " Brach Number: " + BranchNumber;
+        return " City: " + City + " Street: " +  Street + " Building Number: " + BuildingNumber + " Parking Spaces: " + ParkingSpacesNumber + " Brach Number: " + BranchNumber;
     }
 
 
