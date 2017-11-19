@@ -1,8 +1,14 @@
 package com.example.davidsalmon.android5778_8694_7928_01.model.datasource;
 
+import android.content.ContentValues;
+
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.*;
 
+import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch.ContentValuesToBranch;
+import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Car.ContentValuesToCar;
+import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.CarsModel.ContentValuesToCarModel;
+import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client.ContentValuesToClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +17,7 @@ import java.util.List;
  * Created by david salmon on 11/3/2017.
  */
 
-public class List_DBManager implements DB_manager{
+public class List_DBManager implements DB_manager {
     static List<Branch> branchs;
     static List<Car> cars;
     static List<CarsModel> carsModels;
@@ -25,44 +31,63 @@ public class List_DBManager implements DB_manager{
         clients = new ArrayList<>();
         invitations = new ArrayList<>();
     }
+
     @Override
-    public boolean UserExistsOnDataBase(Client client){
-        int ClientsMount=clients.size();
-        for(int i=0;i<ClientsMount;i++)
-            if(clients.get(i).getId()==client.getId())
+    public boolean UserExistsOnDataBase(ContentValues p_client) {
+        Client client = ContentValuesToClient(p_client);
+        int ClientsMount = clients.size();
+        for (int i = 0; i < ClientsMount; i++)
+            if (clients.get(i).getId() == client.getId())
                 return true;
         return false;
     }
+
     @Override
-    public void addUser(Client newUser) {
-      clients.add(newUser);
+    public long addUser(ContentValues newClient) {
+        Client client = ContentValuesToClient(newClient);
+        clients.add(client);
+        return client.getId();
+    }
+
+    @Override
+    public long addModel(ContentValues newModel) {
+        CarsModel model = ContentValuesToCarModel(newModel);
+        carsModels.add(model);
+        return model.getModelCode();
+    }
+
+    @Override
+    public String addCar(ContentValues newCar) {
+        Car car = ContentValuesToCar(newCar);
+        cars.add(car);
+        return car.getCarNumber();
     }
     @Override
-    public void addModel(CarsModel newModel){
-        carsModels.add(newModel);
+    public long addBranch(ContentValues newBranch) {
+        Branch branch = ContentValuesToBranch(newBranch);
+        branchs.add(branch);
+        return branch.getBranchNumber();
     }
+
     @Override
-    public void addCar(Car newCar){
-        cars.add(newCar);
-    }
-    @Override
-    public void addBranch(Branch branch) { branchs.add(branch);}
-    @Override
-    public List<CarsModel> AllCarsModel()
-    {
+    public List<CarsModel> AllCarsModel() {
         return carsModels;
     }
+
     @Override
-    public List<Client> AllUsers(){
+    public List<Client> AllUsers() {
         return clients;
     }
+
     @Override
-    public List<Branch> AllBranch(){
+    public List<Branch> AllBranch() {
         return branchs;
     }
+
     @Override
-    public List<Car> AllCars(){
+    public List<Car> AllCars() {
         return cars;
     }
+
 
 }

@@ -1,3 +1,13 @@
 <resources>
+    <!-- this is for add Branch activity !-->
     <string name="app_name">" Android5778_8694_7928_01"</string>
+    <string name="city">" City"</string>
+    <string name="street">" Street "</string>
+    <string name="BuildingNumber">" Building number "</string>
+    <string name="ParkingSpacesNumber">" Parking spaces number "</string>
+    <!-- this is for add Car activity !-->
+    <string name="BranchNumber">" Branch number "</string>
+    <string name="ModelType" >" Model type "</string>
+    <string name="CarNumber" >" Car number "</string>
+    <string name="Kilometers" >" Kilometers "</string>
 </resources>
