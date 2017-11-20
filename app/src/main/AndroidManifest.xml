@@ -20,7 +20,8 @@
         <activity android:name=".controller.addBracnh" />
         <activity android:name=".controller.addCarModel" />
         <activity android:name=".controller.addClient" />
-        <activity android:name=".cars_list"></activity>
+        <activity android:name=".cars_list" />
+        <activity android:name=".controller.show_client"></activity>
     </application>
 
 </manifest>

@@ -80,6 +80,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             showCars();
         } else if
                 (v == showClientButton) {
+            showClients();
         }
     }
     private void addCar()
@@ -104,9 +105,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
     private void showCars()
     {
-        Intent intent = new Intent(this,cars_list.class);
+        Intent intent = new Intent(this, cars_list.class);
         startActivity(intent);
     }
-
+    private void showClients()
+    {
+        Intent intent = new Intent(this, show_client.class);
+        startActivity(intent);
+    }
 
 }
