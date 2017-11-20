@@ -14,6 +14,7 @@ import android.view.View.*;
 import android.widget.Button;
 
 import com.example.davidsalmon.android5778_8694_7928_01.R;
+import com.example.davidsalmon.android5778_8694_7928_01.cars_list;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.*;
@@ -76,6 +77,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             addBranch();
         } else if
                 (v == showCarsButton) {
+            showCars();
         } else if
                 (v == showClientButton) {
         }
@@ -100,7 +102,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Intent intent = new Intent(this,addBracnh.class);
         startActivity(intent);
     }
-
+    private void showCars()
+    {
+        Intent intent = new Intent(this,cars_list.class);
+        startActivity(intent);
+    }
 
 
 }

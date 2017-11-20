@@ -7,7 +7,7 @@
     <string name="ParkingSpacesNumber">" Parking spaces number "</string>
     <!-- this is for add Car activity !-->
     <string name="BranchNumber">" Branch number "</string>
-    <string name="ModelType" >" Model type "</string>
-    <string name="CarNumber" >" Car number "</string>
-    <string name="Kilometers" >" Kilometers "</string>
+    <string name="ModelType">" Model type "</string>
+    <string name="CarNumber">" Car number "</string>
+    <string name="Kilometers">" Kilometers "</string>
 </resources>
