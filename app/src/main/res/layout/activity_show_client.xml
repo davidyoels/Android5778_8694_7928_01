@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.davidsalmon.android5778_8694_7928_01.controller.show_client">
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:weightSum="1">
 
 </android.support.constraint.ConstraintLayout>
