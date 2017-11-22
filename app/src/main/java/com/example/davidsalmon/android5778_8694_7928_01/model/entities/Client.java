@@ -10,9 +10,9 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoCons
  */
 
 public class Client {
-    private String FamilyName;
+    public String FamilyName;
     private String PrivateName;
-    private long Id;
+    public long Id;
     private String PhoneNumber;
     private String email;
     private long CreditCard;
