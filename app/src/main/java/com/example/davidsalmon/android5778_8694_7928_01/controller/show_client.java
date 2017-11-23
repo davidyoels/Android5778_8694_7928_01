@@ -33,16 +33,23 @@ public class show_client extends AppCompatActivity {
         initByListView(size);
 
     }
+
+
+
     private void initList(int size) {
         List<Client> ClientList = FactoryMethod.getManager().AllUsers();
         myList = new ArrayList<String>();
+
         for (int i = 0; i < ClientList.size(); i++)
             myList.add(ClientList.get(i).toString());
     }
+
+
+
     void initByListView(int size) {
         initList(size);
-     ListView listView = new ListView(this);
-    final ArrayAdapter adapter = new ArrayAdapter
+        ListView listView = new ListView(this);
+        final ArrayAdapter adapter = new ArrayAdapter
             (
                     this,
                     R.layout.row_button,

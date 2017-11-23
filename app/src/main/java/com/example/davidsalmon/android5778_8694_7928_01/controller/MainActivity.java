@@ -1,31 +1,14 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.net.Uri;
-import android.nfc.Tag;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.View.*;
 import android.widget.Button;
 
 import com.example.davidsalmon.android5778_8694_7928_01.R;
-import com.example.davidsalmon.android5778_8694_7928_01.cars_list;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
-import com.example.davidsalmon.android5778_8694_7928_01.model.entities.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch.BranchToContentValues;
-import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Car.CarToContentValues;
-import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.CarsModel.CarModelToContentValues;
-import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client.ClientToContentValues;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -63,7 +46,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         showCarsButton.setOnClickListener(this);
         showClientButton.setOnClickListener(this);
     }
-    @Override     public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
         if (v == addCarButton) {
             addCar();
         } else if
@@ -105,7 +89,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
     private void showCars()
     {
-        Intent intent = new Intent(this, cars_list.class);
+        Intent intent = new Intent(this, Show_cars_list.class);
         startActivity(intent);
     }
     private void showClients()
