@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface DB_manager {
 
-    boolean UserExistsOnDataBase(ContentValues p_client);
+    boolean UserExistsOnDataBase(Long ID);
     long addUser(ContentValues newClient);
     long addModel(ContentValues newModel);
     String addCar(ContentValues newCar);

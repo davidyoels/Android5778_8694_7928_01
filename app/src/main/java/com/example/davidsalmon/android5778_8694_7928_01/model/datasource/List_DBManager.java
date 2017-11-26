@@ -33,11 +33,10 @@ public class List_DBManager implements DB_manager {
     }
 
     @Override
-    public boolean UserExistsOnDataBase(ContentValues p_client) {
-        Client client = ContentValuesToClient(p_client);
+    public boolean UserExistsOnDataBase(Long ID) {
         int ClientsMount = clients.size();
         for (int i = 0; i < ClientsMount; i++)
-            if (clients.get(i).getId() == client.getId())
+            if (clients.get(i).getId() == ID)
                 return true;
         return false;
     }

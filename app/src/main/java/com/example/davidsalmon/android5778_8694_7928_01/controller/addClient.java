@@ -43,6 +43,7 @@ public class addClient extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_client);
         findViews();
+
     }
 
 
@@ -51,8 +52,8 @@ public class addClient extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         if ( v == AddClientButton ) {
             Context context = getApplicationContext();
-            CharSequence text = "one of the filed missed!";
-            Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+
+            Toast toast = Toast.makeText(context, null, Toast.LENGTH_SHORT);
 
             final ContentValues contentValues = new ContentValues();
             try{
@@ -63,10 +64,16 @@ public class addClient extends AppCompatActivity implements View.OnClickListener
                 String Name = this.NameEditText13.getText().toString();
                 String FamilyName = this.FamilyNameEditText14.getText().toString();
 
+                if (FactoryMethod.getManager().UserExistsOnDataBase(ID))
+                {
+                  throw new Exception("User ID already exist");
+                }
+
+
 
 
                 if(ID == 0 || Email.isEmpty() || Name.isEmpty() || CreditCard == 0 )
-                    toast.show();
+                    throw new Exception("one of the filed missed!");
                 else {
                     contentValues.put(Car_GoConst.ClientConst.ID, ID);
                     contentValues.put(Car_GoConst.ClientConst.CREDIT_CARD, CreditCard);
@@ -81,6 +88,8 @@ public class addClient extends AppCompatActivity implements View.OnClickListener
                 }
             } catch (Exception e) {
 
+                //Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
+                toast.setText(e.getMessage());
                 toast.show();
 
             }

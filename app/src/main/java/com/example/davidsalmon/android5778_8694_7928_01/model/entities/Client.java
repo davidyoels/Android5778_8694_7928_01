@@ -10,9 +10,9 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoCons
  */
 
 public class Client {
-    public String FamilyName;
+    private String FamilyName;
     private String PrivateName;
-    public long Id;
+    private long Id;
     private String PhoneNumber;
     private String email;
     private long CreditCard;
@@ -21,11 +21,16 @@ public class Client {
     public Client() {
     }
 
+    public void setId(long id) {
+        Id = id;
+    }
+
     //constructor.
     public Client(String familyName, String privateName, long id, String phoneNumber, String email, long creditCard) {
         FamilyName = familyName;
         PrivateName = privateName;
         Id = id;
+
         PhoneNumber = phoneNumber;
         this.email = email;
         CreditCard = creditCard;
@@ -127,6 +132,7 @@ public class Client {
 
     public static Client ContentValuesToClient(ContentValues contentValues) {
         Client client = new Client();
+        client.setId(contentValues.getAsLong(Car_GoConst.ClientConst.ID));
         client.setFamilyName(contentValues.getAsString(Car_GoConst.ClientConst.FAMILY_NAME));
         client.setPrivateName(contentValues.getAsString(Car_GoConst.ClientConst.PRIVATE_NAME));
         client.setPhoneNumber(contentValues.getAsString(Car_GoConst.ClientConst.PHONE_NUMBER));
