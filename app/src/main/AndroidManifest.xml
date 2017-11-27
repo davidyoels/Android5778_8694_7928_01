@@ -16,12 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.addCar" />
-        <activity android:name=".controller.addBracnh" />
-        <activity android:name=".controller.addCarModel" />
-        <activity android:name=".controller.addClient" />
-        <activity android:name=".controller.Show_cars_list" />
-        <activity android:name=".controller.show_client"></activity>
+        <activity android:name=".controller.AddCar" />
+        <activity android:name=".controller.AddBracnh" />
+        <activity android:name=".controller.AddCarModel" />
+        <activity android:name=".controller.AddClient" />
+        <activity android:name=".controller.ShowCarsList" />
+        <activity android:name=".controller.ShowClient" />
+        <activity android:name=".controller.ShowCarsModelList" />
+        <activity android:name=".controller.ShowBranchsList" />
     </application>
 
 </manifest>

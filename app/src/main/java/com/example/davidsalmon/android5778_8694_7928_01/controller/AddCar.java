@@ -14,7 +14,7 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoCons
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 
 
-public class addCar extends Activity implements View.OnClickListener {
+public class AddCar extends Activity implements View.OnClickListener {
 
     private EditText BranchNumberEditText;
     private EditText ModelTypeEditText;

@@ -1,31 +1,20 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.solver.widgets.ConstraintAnchor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Car;
-import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Show_cars_list extends Activity {
+public class ShowCarsList extends Activity {
 
     private List<Car> myCarList;
 
@@ -41,11 +30,6 @@ public class Show_cars_list extends Activity {
 
     public  void initCarList (int size){
         myCarList = FactoryMethod.getManager().AllCars();
-
-        //
-        Car car1 = new Car(123,"Toyota Corola",55000,"89-322-45");
-        myCarList.add(car1);
-        //
     }
 
     public void initCarByListView(int size){
@@ -59,7 +43,7 @@ public class Show_cars_list extends Activity {
             public View getView(int position,  View convertView,  ViewGroup parent) {
 
                 if (convertView == null)    {
-                    convertView = View.inflate(Show_cars_list.this, R.layout.activity_cars_list,null);
+                    convertView = View.inflate(ShowCarsList.this, R.layout.activity_cars_list,null);
                 }
 
                 TextView productId_carModel_TextView = (TextView) convertView.findViewById(R.id.carModel_id);

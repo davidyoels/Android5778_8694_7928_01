@@ -2,8 +2,8 @@ package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +13,7 @@ import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 
-public class addClient extends AppCompatActivity implements View.OnClickListener{
+public class AddClient extends AppCompatActivity implements View.OnClickListener{
 
     private EditText NameEditText13;
     private EditText FamilyNameEditText14;
@@ -72,7 +72,7 @@ public class addClient extends AppCompatActivity implements View.OnClickListener
 
 
 
-                if(ID == 0 || Email.isEmpty() || Name.isEmpty() || CreditCard == 0 )
+                if(ID == 0 || Email.isEmpty() || Name.isEmpty() || CreditCard == 0 || PhoneNumber.isEmpty() || FamilyName.isEmpty() )
                     throw new Exception("one of the filed missed!");
                 else {
                     contentValues.put(Car_GoConst.ClientConst.ID, ID);

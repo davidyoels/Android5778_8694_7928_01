@@ -21,7 +21,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button addClientButton;
     private Button showCarsButton;
     private Button showClientButton;
-
+    private Button showCarsModelButton;
+    private Button showBranchsButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         addClientButton = (Button) findViewById(R.id.addClientButton);
         showCarsButton = (Button) findViewById(R.id.showCarsButton);
         showClientButton = (Button) findViewById(R.id.showClientButton);
+        showCarsModelButton = (Button) findViewById(R.id.showCarsModelButton);
+        showBranchsButton = (Button) findViewById(R.id.showBranchesButton);
 
         addCarButton.setOnClickListener(this);
         addBranchButton.setOnClickListener(this);
@@ -45,6 +48,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         addClientButton.setOnClickListener(this);
         showCarsButton.setOnClickListener(this);
         showClientButton.setOnClickListener(this);
+        showCarsModelButton.setOnClickListener(this);
+        showBranchsButton.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
@@ -65,37 +70,53 @@ public class MainActivity extends Activity implements View.OnClickListener {
         } else if
                 (v == showClientButton) {
             showClients();
+        } else if
+                (v == showCarsModelButton) {
+            showCarsModel();
+        } else if
+                (v == showBranchsButton) {
+            showBranchs();
         }
     }
+
     private void addCar()
     {
-        Intent intent = new Intent(this,addCar.class);
+        Intent intent = new Intent(this,AddCar.class);
         startActivity(intent);
     }
     private void addCarModel()
     {
-        Intent intent = new Intent(this,addCarModel.class);
+        Intent intent = new Intent(this,AddCarModel.class);
         startActivity(intent);
     }
     private void addClient()
     {
-        Intent intent = new Intent(this,addClient.class);
+        Intent intent = new Intent(this,AddClient.class);
         startActivity(intent);
     }
     private void addBranch()
     {
-        Intent intent = new Intent(this,addBracnh.class);
+        Intent intent = new Intent(this,AddBracnh.class);
         startActivity(intent);
     }
     private void showCars()
     {
-        Intent intent = new Intent(this, Show_cars_list.class);
+        Intent intent = new Intent(this, ShowCarsList.class);
         startActivity(intent);
     }
     private void showClients()
     {
-        Intent intent = new Intent(this, show_client.class);
+        Intent intent = new Intent(this, ShowClient.class);
         startActivity(intent);
     }
-
+    private void showCarsModel()
+    {
+        Intent intent = new Intent(this,ShowCarsModelList.class);
+        startActivity(intent);
+    }
+    private void showBranchs()
+    {
+        Intent intent = new Intent(this,ShowBranchsList.class);
+        startActivity(intent);
+    }
 }

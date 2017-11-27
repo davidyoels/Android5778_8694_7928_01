@@ -12,9 +12,8 @@ import android.widget.Toast;
 import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
-import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch;
 
-public class addBracnh extends Activity implements View.OnClickListener {
+public class AddBracnh extends Activity implements View.OnClickListener {
 
     private EditText CityEditText;
     private EditText StreetEditText;
@@ -50,23 +49,21 @@ public class addBracnh extends Activity implements View.OnClickListener {
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, text, duration);
         final ContentValues contentValues = new ContentValues();
-        try{
+        try {
             int branch_number = Integer.valueOf(this.BranchNumberEditText.getText().toString());
             int building_number = Integer.valueOf(this.BuildingNumberEditText.getText().toString());
             int parking_spaces = Integer.valueOf(this.ParkingSpacesNumberEditText.getText().toString());
             String city = CityEditText.getText().toString();
             String street = StreetEditText.getText().toString();
-            if(city.isEmpty() || street.isEmpty())
-                toast.show();
-            else {
-                contentValues.put(Car_GoConst.BranchConst.CITY, city);
-                contentValues.put(Car_GoConst.BranchConst.STREET, street);
-                contentValues.put(Car_GoConst.BranchConst.BRANCH_NUMBER, branch_number);
-                contentValues.put(Car_GoConst.BranchConst.BUILDING_NUMBER, building_number);
-                contentValues.put(Car_GoConst.BranchConst.PARKING_SPACE_NUMBER, parking_spaces);
-                FactoryMethod.getManager().addBranch(contentValues);
-                finish();
-            }
+
+            contentValues.put(Car_GoConst.BranchConst.CITY, city);
+            contentValues.put(Car_GoConst.BranchConst.STREET, street);
+            contentValues.put(Car_GoConst.BranchConst.BRANCH_NUMBER, branch_number);
+            contentValues.put(Car_GoConst.BranchConst.BUILDING_NUMBER, building_number);
+            contentValues.put(Car_GoConst.BranchConst.PARKING_SPACE_NUMBER, parking_spaces);
+            FactoryMethod.getManager().addBranch(contentValues);
+            finish();
+
         } catch (Exception e) {
 
             toast.show();
