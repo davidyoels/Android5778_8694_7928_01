@@ -68,9 +68,6 @@ public class ShowClient extends AppCompatActivity implements View.OnClickListene
 
         listView.setAdapter(adapter);
         this.setContentView(listView);
-
-
-
     }
 
 

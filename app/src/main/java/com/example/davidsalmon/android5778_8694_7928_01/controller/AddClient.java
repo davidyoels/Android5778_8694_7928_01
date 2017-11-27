@@ -2,6 +2,7 @@ package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -83,7 +84,21 @@ public class AddClient extends AppCompatActivity implements View.OnClickListener
                     contentValues.put(Car_GoConst.ClientConst.FAMILY_NAME, FamilyName);
 
 
-                    FactoryMethod.getManager().addUser(contentValues);
+                    new AsyncTask<Void, Void, Long>() {
+                        @Override
+                        protected void onPostExecute(Long idResult)
+                        {
+                            super.onPostExecute(idResult);
+                            if (idResult > 0)
+                                Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
+                        }
+                        @Override
+                        protected Long doInBackground(Void... params)
+                        {
+                            return FactoryMethod.getManager().addUser(contentValues);
+                        }}.execute();
+
+
                     finish();
                 }
             } catch (Exception e) {
@@ -94,6 +109,7 @@ public class AddClient extends AppCompatActivity implements View.OnClickListener
 
             }
         }
+
     }
 
 }

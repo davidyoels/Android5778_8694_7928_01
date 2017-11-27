@@ -3,6 +3,7 @@ package com.example.davidsalmon.android5778_8694_7928_01.controller;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -61,7 +62,19 @@ public class AddBracnh extends Activity implements View.OnClickListener {
             contentValues.put(Car_GoConst.BranchConst.BRANCH_NUMBER, branch_number);
             contentValues.put(Car_GoConst.BranchConst.BUILDING_NUMBER, building_number);
             contentValues.put(Car_GoConst.BranchConst.PARKING_SPACE_NUMBER, parking_spaces);
-            FactoryMethod.getManager().addBranch(contentValues);
+            new AsyncTask<Void, Void, Long>() {
+                @Override
+                protected void onPostExecute(Long idResult)
+                {
+                    super.onPostExecute(idResult);
+                    if (idResult > 0)
+                        Toast.makeText(getBaseContext(), "insert branch: " + idResult, Toast.LENGTH_LONG).show();
+                }
+                @Override
+                protected Long doInBackground(Void... params)
+                {
+                    return FactoryMethod.getManager().addBranch(contentValues);
+                }}.execute();
             finish();
 
         } catch (Exception e) {

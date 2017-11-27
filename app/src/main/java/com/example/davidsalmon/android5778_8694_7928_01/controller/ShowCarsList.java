@@ -1,7 +1,7 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -14,7 +14,7 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Car;
 
 import java.util.List;
 
-public class ShowCarsList extends Activity {
+public class ShowCarsList extends AppCompatActivity {
 
     private List<Car> myCarList;
 
@@ -22,7 +22,6 @@ public class ShowCarsList extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cars_list);
-
         initCarByListView(100);
 
     }

@@ -3,6 +3,7 @@ package com.example.davidsalmon.android5778_8694_7928_01.controller;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -60,7 +61,19 @@ public class AddCar extends Activity implements View.OnClickListener {
                 contentValues.put(Car_GoConst.CarConst.MODEL_TYPE, model_type);
                 contentValues.put(Car_GoConst.CarConst.KILOMETERS, kilometers);
                 contentValues.put(Car_GoConst.CarConst.CAR_NUMBER, car_number);
-                FactoryMethod.getManager().addCar(contentValues);
+                new AsyncTask<Void, Void, String>() {
+                    @Override
+                    protected void onPostExecute(String idResult)
+                    {
+                        super.onPostExecute(idResult);
+                        if (!idResult.isEmpty())
+                            Toast.makeText(getBaseContext(), "insert car: " + idResult, Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    protected String doInBackground(Void... params)
+                    {
+                        return FactoryMethod.getManager().addCar(contentValues);
+                    }}.execute();
                 finish();
             }
         } catch (Exception e) {

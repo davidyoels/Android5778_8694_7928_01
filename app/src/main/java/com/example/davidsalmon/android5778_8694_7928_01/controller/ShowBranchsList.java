@@ -1,7 +1,7 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -12,23 +12,23 @@ import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class ShowBranchsList extends Activity {
+public class ShowBranchsList extends AppCompatActivity {
     List<Branch> myBranchsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        myBranchsList = new ArrayList<>();
+
         initCarByListView(100);
     }
 
 
     public  void initCarList (int size){
-        myBranchsList = FactoryMethod.getManager().AllBranch();
+
+       myBranchsList = FactoryMethod.getManager().AllBranch();
     }
 
     public void initCarByListView(int size){
