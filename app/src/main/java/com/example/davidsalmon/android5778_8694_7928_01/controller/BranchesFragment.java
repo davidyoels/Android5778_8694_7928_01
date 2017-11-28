@@ -1,7 +1,9 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -14,52 +16,38 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch;
 
 import java.util.List;
 
+/**
+ * Created by david salmon on 11/28/2017.
+ */
 
-public class ShowBranchsList extends AppCompatActivity {
+public class BranchesFragment extends Fragment{
+    public static final String TAB = "Tab1Fragment";
     List<Branch> myBranchsList;
-
+    ViewGroup viewGroup;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.branchs_fragment,container,false);
+        viewGroup = (ViewGroup) inflater.inflate(R.layout.branchs_fragment, container, false);
+        View  v = initCarByListView(100);
 
-        initCarByListView(100);
+        return v;
     }
-
-
     public  void initCarList (int size){
-       /* new AsyncTask<Void, Void, Integer>() {
-            @Override
-            protected void onPostExecute(Integer idResult)
-            {
-                super.onPostExecute(idResult);
-                if (idResult > 0)
-                    Toast.makeText(getBaseContext(), "show list size: " + idResult, Toast.LENGTH_LONG).show();
-                else {
-                    Toast.makeText(getBaseContext(), "nothing to show size: " + idResult, Toast.LENGTH_LONG).show();
-                    finish();
-                }
-            }
-            @Override
-            protected Integer doInBackground(Void... params)
-            {
-                myBranchsList = FactoryMethod.getManager().AllBranch();
-                return myBranchsList.size();
-            }}.execute();*/
-       myBranchsList = FactoryMethod.getManager().AllBranch();
+        myBranchsList = FactoryMethod.getManager().AllBranch();
     }
-
-    public void initCarByListView(int size){
+    public View initCarByListView(int size){
 
         initCarList(size);
-        ListView listView = new ListView(this);
-        ArrayAdapter<Branch> adapter = new ArrayAdapter<Branch>(this, R.layout.activity_show_branchs_list, myBranchsList)
+        ListView listView = new ListView(this.getActivity());
+        ArrayAdapter<Branch> adapter = new ArrayAdapter<Branch>(this.getActivity(), R.layout.branchs_fragment, myBranchsList)
         {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
 
                 if (convertView == null)    {
-                    convertView = View.inflate(ShowBranchsList.this, R.layout.activity_show_branchs_list,null);
+                    convertView = View.inflate(BranchesFragment.this.getActivity(), R.layout.branchs_fragment,null);
                 }
 
                 TextView productId_City_TextView = (TextView) convertView.findViewById(R.id._City);
@@ -73,19 +61,14 @@ public class ShowBranchsList extends AppCompatActivity {
                 productId_BuildingNumber_TextView.setText(((Integer) myBranchsList.get(position).getBuildingNumber()).toString());
                 productId_ParkingSpaces_TextView.setText(((Integer) myBranchsList.get(position).getParkingSpacesNumber()).toString());
                 productId_BranchNumber_TextView.setText(((Integer) myBranchsList.get(position).getBranchNumber()).toString());
-
                 return convertView;
             }
         };
 
 
         listView.setAdapter(adapter);
-        this.setContentView(listView);
+        viewGroup.addView(listView);
 
-
-
+      return viewGroup;
     }
-
-
-
 }

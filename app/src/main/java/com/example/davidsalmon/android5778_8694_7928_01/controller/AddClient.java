@@ -1,10 +1,10 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +14,7 @@ import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 
-public class AddClient extends AppCompatActivity implements View.OnClickListener{
+public class AddClient extends Activity implements View.OnClickListener{
 
     private EditText NameEditText13;
     private EditText FamilyNameEditText14;

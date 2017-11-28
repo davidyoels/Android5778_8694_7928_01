@@ -10,11 +10,10 @@ import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 
-public class MainActivity extends Activity implements View.OnClickListener {
-
+public class MainActivity extends Activity implements View.OnClickListener{
     FactoryMethod a = new FactoryMethod();
     public DB_manager b;
-
+    private Button button;
     private Button addCarButton;
     private Button addBranchButton;
     private Button addCarModelButton;
@@ -23,14 +22,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button showClientButton;
     private Button showCarsModelButton;
     private Button showBranchsButton;
+    private Button openTabs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //create one
         b = a.getManager();
+
         findViews();
     }
+
 
     void findViews() {
         addCarButton = (Button) findViewById(R.id.addCarButton);
@@ -41,6 +43,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         showClientButton = (Button) findViewById(R.id.showClientButton);
         showCarsModelButton = (Button) findViewById(R.id.showCarsModelButton);
         showBranchsButton = (Button) findViewById(R.id.showBranchesButton);
+        openTabs = (Button) findViewById(R.id.openTabs);
 
         addCarButton.setOnClickListener(this);
         addBranchButton.setOnClickListener(this);
@@ -50,7 +53,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         showClientButton.setOnClickListener(this);
         showCarsModelButton.setOnClickListener(this);
         showBranchsButton.setOnClickListener(this);
+        openTabs.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View v) {
         if (v == addCarButton) {
@@ -76,6 +81,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         } else if
                 (v == showBranchsButton) {
             showBranchs();
+        } else if
+                (v == openTabs) {
+            open_Tabs();
         }
     }
 
@@ -117,6 +125,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void showBranchs()
     {
         Intent intent = new Intent(this,ShowBranchsList.class);
+        startActivity(intent);
+    }
+    private void open_Tabs()
+    {
+        Intent intent = new Intent(this,Main3Activity.class);
         startActivity(intent);
     }
 }

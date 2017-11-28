@@ -10,4 +10,13 @@
     <string name="ModelType">" Model type "</string>
     <string name="CarNumber">" Car number "</string>
     <string name="Kilometers">" Kilometers "</string>
+    <string name="addBranch">" add branch "</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="slidingtabsusingviewpager">SlidingTabsUsingViewPager</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_main3">Main3Activity</string>
+
 </resources>
