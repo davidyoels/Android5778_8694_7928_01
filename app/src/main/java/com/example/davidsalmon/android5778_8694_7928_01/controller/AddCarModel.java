@@ -16,7 +16,6 @@ import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Gearbox;
-
 public class AddCarModel extends Activity implements View.OnClickListener{
 
 

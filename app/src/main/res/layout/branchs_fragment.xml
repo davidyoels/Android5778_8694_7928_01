@@ -3,11 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:background="@android:color/white"
+    android:layout_marginRight="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginTop="16dp"
+    android:background="#323232"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1">
-
+<android.support.constraint.ConstraintLayout
+    android:layout_width="363dp"
+    android:layout_height="120dp"
+    android:background="@android:color/white"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="8dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    android:layout_marginRight="8dp"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:id="@+id/constraintLayout">
     <TextView
         android:id="@+id/_Street"
         android:layout_width="wrap_content"
@@ -24,14 +40,13 @@
         android:id="@+id/_BuildingNumber"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="start"
-        android:text="Text view"
         android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@+id/BuildingNumber"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/_City"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintTop_toBottomOf="@+id/_City" />
 
     <TextView
         android:id="@+id/BuildingNumber"
@@ -95,30 +110,28 @@
         android:id="@+id/_BranchNumber"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
-        android:text="Text view"
-        android:gravity="start"
-        android:textSize="18sp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/_ParkingSpaces"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintLeft_toRightOf="@+id/BranchNumber"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="start"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/BranchNumber"
+        app:layout_constraintTop_toBottomOf="@+id/_ParkingSpaces"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/_ParkingSpaces"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
-        android:text="Text view"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="start"
         android:textSize="18sp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/_BuildingNumber"
         app:layout_constraintLeft_toRightOf="@+id/ParkingSpaces"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintTop_toBottomOf="@+id/_BuildingNumber" />
 
     <TextView
         android:id="@+id/Place"
@@ -133,4 +146,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent" />
+   </android.support.constraint.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>

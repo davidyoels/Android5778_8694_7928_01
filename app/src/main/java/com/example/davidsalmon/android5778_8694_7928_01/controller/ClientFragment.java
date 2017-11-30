@@ -6,30 +6,74 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.davidsalmon.android5778_8694_7928_01.R;
+import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
+import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client;
+
+import java.util.List;
 
 /**
  * Created by david salmon on 11/28/2017.
  */
 
-public class ClientFragment extends Fragment implements View.OnClickListener {
+public class ClientFragment extends Fragment {
     public static final String TAB = "ClientFragment";
-
-    private Button btnTEST;
+    List<Client> myClientsList;
+    ViewGroup viewGroup;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.client_fragment,container,false);
-        btnTEST = (Button) view.findViewById(R.id.btnTEST3);
-        btnTEST.setOnClickListener(this);
-        return view;
+        viewGroup = (ViewGroup) inflater.inflate(R.layout.client_fragment, container, false);
+        View  v = initCarByListView(100);
+
+
+        return v;
+    }
+    public  void initCarList (int size){
+        myClientsList = FactoryMethod.getManager().AllUsers();
+    }
+    public View initCarByListView(int size){
+
+        initCarList(size);
+        ListView listView = new ListView(this.getActivity());
+        ArrayAdapter<Client> adapter = new ArrayAdapter<Client>(this.getActivity(), R.layout.client_fragment, myClientsList)
+        {
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                if (convertView == null)    {
+                    convertView = View.inflate(ClientFragment.this.getActivity(), R.layout.client_fragment,null);
+                }
+
+                TextView productId_firstName_TextView = (TextView) convertView.findViewById(R.id._FirstName);
+                TextView productId_lastName_TextView = (TextView) convertView.findViewById(R.id._LastName);
+                TextView productId_id_TextView = (TextView) convertView.findViewById(R.id._ID);
+                TextView productId_phoneNumber_TextView = (TextView) convertView.findViewById(R.id._PhoneNumber);
+                TextView productId_credirCard_TextView = (TextView) convertView.findViewById(R.id._CreditCard);
+                TextView productId_email_TextView = (TextView) convertView.findViewById(R.id._Email);
+
+                productId_firstName_TextView.setText(myClientsList.get(position).getPrivateName());
+                productId_lastName_TextView.setText((myClientsList.get(position).getFamilyName()));
+                productId_id_TextView.setText(((Long) myClientsList.get(position).getId()).toString());
+                productId_phoneNumber_TextView.setText((myClientsList.get(position).getPhoneNumber()).toString());
+                productId_credirCard_TextView.setText(((Long) myClientsList.get(position).getCreditCard()).toString());
+                productId_email_TextView.setText((myClientsList.get(position).getEmail()));
+                return convertView;
+            }
+        };
+
+
+        listView.setAdapter(adapter);
+        viewGroup.addView(listView);
+
+        return viewGroup;
     }
 
-    @Override
-    public void onClick(View view) {
-        Toast.makeText(getActivity(),"TESTING BUTTON CLICK 3",Toast.LENGTH_LONG).show();
-    }
+
+
 }

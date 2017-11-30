@@ -2,6 +2,7 @@ package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,16 +21,19 @@ import java.util.List;
  * Created by david salmon on 11/28/2017.
  */
 
-public class BranchesFragment extends Fragment{
+public class BranchesFragment extends Fragment {
     public static final String TAB = "Tab1Fragment";
     List<Branch> myBranchsList;
     ViewGroup viewGroup;
+    FloatingActionButton add;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.branchs_fragment,container,false);
         viewGroup = (ViewGroup) inflater.inflate(R.layout.branchs_fragment, container, false);
         View  v = initCarByListView(100);
+        add = (FloatingActionButton) getActivity().findViewById(R.id.add);
+       
 
         return v;
     }
@@ -71,4 +75,7 @@ public class BranchesFragment extends Fragment{
 
       return viewGroup;
     }
+
+
+
 }

@@ -36,13 +36,12 @@ public class Main3Activity extends  AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        Log.d(TAG,"onCreate: Statring.");
+        Log.d(TAG, "onCreate: Statring.");
 
         mSectionPageAdapter = new SectionPageAdapter(getSupportFragmentManager());
         //set up the viewPager with the sections adapter
         mViewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);
-
         TabLayout tableLayout = (TabLayout) findViewById(R.id.tabs);
         tableLayout.setupWithViewPager(mViewPager);
     }
