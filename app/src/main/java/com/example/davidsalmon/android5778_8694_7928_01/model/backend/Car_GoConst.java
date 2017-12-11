@@ -1,5 +1,8 @@
 package com.example.davidsalmon.android5778_8694_7928_01.model.backend;
 
+import android.content.ContentValues;
+
+import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Car;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Gearbox;
 
 /**
@@ -19,8 +22,8 @@ public class Car_GoConst {
     public static class CarConst {
         public static final String BRANCH_NUMBER = "branch_number";
         public static final String MODEL_TYPE = "model_type";
-        public static final String KILOMETERS = "kilometers";
-        public static final String CAR_NUMBER = "car_number";
+        public static final String KILOMETERS = "kilometer";
+        public static final String CAR_NUMBER = "_id";
     }
 
     public static class CarModelConst {
@@ -39,6 +42,24 @@ public class Car_GoConst {
         public static final String PHONE_NUMBER = "phone_number";
         public static final String EMAIL = "email";
         public static final String CREDIT_CARD = "credit_card";
+    }
+
+    public static ContentValues CarToContentValues(Car car) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Car_GoConst.CarConst.BRANCH_NUMBER, car.getBranchNumber());
+        contentValues.put(Car_GoConst.CarConst.MODEL_TYPE, car.getModelType());
+        contentValues.put(Car_GoConst.CarConst.KILOMETERS, car.getKilometers());
+        contentValues.put(Car_GoConst.CarConst.CAR_NUMBER, car.getCarNumber());
+        return contentValues;
+    }
+
+    public static Car ContentValuesToCar(ContentValues contentValues) {
+        Car car = new Car();
+        car.setBranchNumber(contentValues.getAsInteger(Car_GoConst.CarConst.BRANCH_NUMBER));
+        car.setModelType(contentValues.getAsInteger(Car_GoConst.CarConst.MODEL_TYPE));
+        car.setKilometers(contentValues.getAsInteger(Car_GoConst.CarConst.KILOMETERS));
+        car.setCarNumber(contentValues.getAsString(Car_GoConst.CarConst.CAR_NUMBER));
+        return car;
     }
 
 }

@@ -11,14 +11,14 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoCons
 public class Car {
     //
     private int BranchNumber;
-    private String ModelType;
+    private int ModelType;//just int
     private int Kilometers;
     private String CarNumber;
 
     public Car() {
     }
 
-    public Car(int branchNumber, String modelType, int kilometers, String carNumber) {
+    public Car(int branchNumber, int modelType, int kilometers, String carNumber) {
         BranchNumber = branchNumber;
         ModelType = modelType;
         Kilometers = kilometers;
@@ -42,14 +42,14 @@ public class Car {
     /**
      * @return the car model type.
      */
-    public String getModelType() {
+    public int getModelType() {
         return ModelType;
     }
 
     /**
      * @param modelType to change the cutrrent car model type.
      */
-    public void setModelType(String modelType) {
+    public void setModelType(int modelType) {
         ModelType = modelType;
     }
 
@@ -86,22 +86,6 @@ public class Car {
     }
 
     //********ContentValues*******
-    public static ContentValues CarToContentValues(Car car) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(Car_GoConst.CarConst.BRANCH_NUMBER, car.BranchNumber);
-        contentValues.put(Car_GoConst.CarConst.MODEL_TYPE, car.ModelType);
-        contentValues.put(Car_GoConst.CarConst.KILOMETERS, car.Kilometers);
-        contentValues.put(Car_GoConst.CarConst.CAR_NUMBER, car.CarNumber);
-        return contentValues;
-    }
 
-    public static Car ContentValuesToCar(ContentValues contentValues) {
-        Car car = new Car();
-        car.setBranchNumber(contentValues.getAsInteger(Car_GoConst.CarConst.BRANCH_NUMBER));
-        car.setModelType(contentValues.getAsString(Car_GoConst.CarConst.MODEL_TYPE));
-        car.setKilometers(contentValues.getAsInteger(Car_GoConst.CarConst.KILOMETERS));
-        car.setCarNumber(contentValues.getAsString(Car_GoConst.CarConst.CAR_NUMBER));
-        return car;
-    }
 
 }

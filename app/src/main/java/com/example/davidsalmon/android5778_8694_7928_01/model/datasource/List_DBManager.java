@@ -2,11 +2,11 @@ package com.example.davidsalmon.android5778_8694_7928_01.model.datasource;
 
 import android.content.ContentValues;
 
+import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.*;
 
 import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch.ContentValuesToBranch;
-import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Car.ContentValuesToCar;
 import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.CarsModel.ContentValuesToCarModel;
 import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client.ContentValuesToClient;
 
@@ -16,6 +16,7 @@ import java.util.List;
 /**
  * Created by david salmon on 11/3/2017.
  */
+
 
 public class List_DBManager implements DB_manager {
     static List<Branch> branchs;
@@ -31,6 +32,7 @@ public class List_DBManager implements DB_manager {
         clients = new ArrayList<>();
         invitations = new ArrayList<>();
     }
+
 
     @Override
     public boolean UserExistsOnDataBase(Long ID) {
@@ -57,7 +59,7 @@ public class List_DBManager implements DB_manager {
 
     @Override
     public String addCar(ContentValues newCar) {
-        Car car = ContentValuesToCar(newCar);
+        Car car = Car_GoConst.ContentValuesToCar(newCar);
         cars.add(car);
         return car.getCarNumber();
     }

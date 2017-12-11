@@ -11,8 +11,11 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 
 public class MainActivity extends Activity implements View.OnClickListener{
+
     FactoryMethod a = new FactoryMethod();
+
     public DB_manager b;
+
     private Button button;
     private Button addCarButton;
     private Button addBranchButton;

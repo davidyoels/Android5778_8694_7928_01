@@ -6,7 +6,7 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoCons
 
 public class CarsModel {
 
-    private int ModelCode;
+    private int ModelCode;//_id
     private String CompanyName;
     private String ModelName;
     private int EngineCapacity;

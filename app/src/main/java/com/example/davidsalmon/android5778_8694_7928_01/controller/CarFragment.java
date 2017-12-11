@@ -54,7 +54,7 @@ public class CarFragment extends Fragment{
                 TextView productId_carNumber_TextView = (TextView) convertView.findViewById(R.id.carNumber_id);
                 TextView productId_carBranch_TextView = (TextView) convertView.findViewById(R.id.carBranch_id);
 
-                productId_carModel_TextView.setText(myCarList.get(position).getModelType().toString());
+                productId_carModel_TextView.setText(((Integer)myCarList.get(position).getModelType()).toString());
                 productId_Kilometer_TextView.setText(((Integer)myCarList.get(position).getKilometers()).toString());
                 productId_carNumber_TextView.setText(myCarList.get(position).getCarNumber());
                 productId_carBranch_TextView.setText(((Integer)myCarList.get(position).getBranchNumber()).toString());
