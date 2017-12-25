@@ -54,9 +54,9 @@ public class BranchesFragment extends Fragment {
                     convertView = View.inflate(BranchesFragment.this.getActivity(), R.layout.branchs_fragment,null);
                 }
 
-                TextView productId_City_TextView = (TextView) convertView.findViewById(R.id._City);
-                TextView productId_Street_TextView = (TextView) convertView.findViewById(R.id._Street);
-                TextView productId_BuildingNumber_TextView = (TextView) convertView.findViewById(R.id._BuildingNumber);
+                TextView productId_City_TextView = (TextView) convertView.findViewById(R.id._Street);
+                TextView productId_Street_TextView = (TextView) convertView.findViewById(R.id.city);
+                TextView productId_BuildingNumber_TextView = (TextView) convertView.findViewById(R.id._bulidingNumber);
                 TextView productId_ParkingSpaces_TextView = (TextView) convertView.findViewById(R.id._ParkingSpaces);
                 TextView productId_BranchNumber_TextView = (TextView) convertView.findViewById(R.id._BranchNumber);
 

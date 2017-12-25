@@ -2,6 +2,7 @@ package com.example.davidsalmon.android5778_8694_7928_01.model.backend;
 
 import android.content.ContentValues;
 
+import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Car;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Gearbox;
 
@@ -11,11 +12,12 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Gearbox;
 
 public class Car_GoConst {
 
+
     public static class BranchConst {
         public static final String CITY = "city";
         public static final String STREET = "street";
-        public static final String BUILDING_NUMBER = "buildingNumber";
-        public static final String PARKING_SPACE_NUMBER = "parkingSpacesNumber";
+        public static final String BUILDING_NUMBER = "building_number";
+        public static final String PARKING_SPACE_NUMBER = "parking_spaces_number";
         public static final String BRANCH_NUMBER = "_id";
     }
 
@@ -60,6 +62,28 @@ public class Car_GoConst {
         car.setKilometers(contentValues.getAsInteger(Car_GoConst.CarConst.KILOMETERS));
         car.setCarNumber(contentValues.getAsString(Car_GoConst.CarConst.CAR_NUMBER));
         return car;
+    }
+
+    public static ContentValues BranchToContentValues(Branch branch) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Car_GoConst.BranchConst.BRANCH_NUMBER, branch.getBranchNumber());
+        contentValues.put(Car_GoConst.BranchConst.CITY, branch.getCity());
+        contentValues.put(Car_GoConst.BranchConst.STREET, branch.getStreet());
+        contentValues.put(Car_GoConst.BranchConst.BUILDING_NUMBER, branch.getBuildingNumber());
+        contentValues.put(Car_GoConst.BranchConst.PARKING_SPACE_NUMBER, branch.getParkingSpacesNumber());
+        return contentValues;
+    }
+
+    public static Branch ContentValuesToBranch(ContentValues contentValues) {
+
+        Branch branch = new Branch();
+        branch.setBranchNumber(contentValues.getAsInteger(Car_GoConst.BranchConst.BRANCH_NUMBER));
+        branch.setCity(contentValues.getAsString(Car_GoConst.BranchConst.CITY));
+        branch.setStreet(contentValues.getAsString((Car_GoConst.BranchConst.STREET)));
+        branch.setBuildingNumber( contentValues.getAsInteger(BranchConst.BUILDING_NUMBER));
+        branch.setParkingSpacesNumber(contentValues.getAsInteger(BranchConst.PARKING_SPACE_NUMBER));
+
+        return branch;
     }
 
 }

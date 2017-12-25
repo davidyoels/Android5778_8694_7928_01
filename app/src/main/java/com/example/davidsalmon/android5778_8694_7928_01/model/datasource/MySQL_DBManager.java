@@ -1,6 +1,7 @@
 package com.example.davidsalmon.android5778_8694_7928_01.model.datasource;
 
 import android.content.ContentValues;
+import android.util.Log;
 
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager;
@@ -52,15 +53,27 @@ public class MySQL_DBManager implements DB_manager {
 //            printLog("addStudent:\n" + result);
             return id;
         } catch (IOException e) {
-            //printLog("addStudent Exception:\n" + e);
+            printLog("addCar Exception:\n" + e);
             return null;
         }
     }
 
 
     @Override
-    public long addBranch(ContentValues newBranch) {
-        return 0;
+    public int addBranch(ContentValues newBranch) {
+
+        try{
+            String result = PHPtools.POST(WEB_URL + "/insertBranch.php", newBranch);
+            Integer id = Integer.parseInt(result);
+  //          if (id > 0)
+//                SetUpdate();
+            printLog("addStudent:\n" + result);
+                return id;
+        } catch (IOException e) {
+            printLog("addBranch Exception:\n" + e);
+            return -1;
+        }
+
     }
 
     @Override
@@ -75,6 +88,23 @@ public class MySQL_DBManager implements DB_manager {
 
     @Override
     public List<Branch> AllBranch() {
+        List<Branch> result = new ArrayList<Branch>();
+
+        try{
+            String str = PHPtools.GET(WEB_URL+"/getAllBranch.php");
+            JSONArray jsonArray = new JSONObject(str).getJSONArray("branches");
+
+            for( int i=0; i<jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                ContentValues contentValues = PHPtools.JsonToContentValues(jsonObject);
+                Branch branch = Car_GoConst.ContentValuesToBranch(contentValues);
+                result.add(branch);
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -111,6 +141,15 @@ public class MySQL_DBManager implements DB_manager {
 
 
 
+
+    public void printLog(String message)
+    {
+        Log.d(this.getClass().getName(),"\n"+message);
+    }
+    public void printLog(Exception message)
+    {
+        Log.d(this.getClass().getName(),"Exception-->\n"+message);
+    }
 
 
 }

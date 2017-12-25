@@ -16,7 +16,7 @@ public interface DB_manager {
     long addUser(ContentValues newClient);
     long addModel(ContentValues newModel);
     String addCar(ContentValues newCar);
-    long addBranch(ContentValues newBranch);
+    int addBranch(ContentValues newBranch);
     List<CarsModel> AllCarsModel();
     List<Client> AllUsers();
     List<Branch> AllBranch();

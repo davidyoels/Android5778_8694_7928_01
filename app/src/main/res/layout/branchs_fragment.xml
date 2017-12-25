@@ -25,7 +25,7 @@
     android:layout_marginEnd="8dp"
     android:id="@+id/constraintLayout">
     <TextView
-        android:id="@+id/_Street"
+        android:id="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginLeft="8dp"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/_BuildingNumber"
+        android:id="@+id/_bulidingNumber"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginLeft="8dp"
@@ -46,7 +46,7 @@
         android:gravity="start"
         android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@+id/BuildingNumber"
-        app:layout_constraintTop_toBottomOf="@+id/_City" />
+        app:layout_constraintTop_toBottomOf="@+id/_Street" />
 
     <TextView
         android:id="@+id/BuildingNumber"
@@ -81,7 +81,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
-        android:id="@+id/_City"
+        android:id="@+id/_Street"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginLeft="8dp"
@@ -89,7 +89,7 @@
         android:layout_marginTop="3dp"
         android:gravity="start"
         android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@+id/_Street"
+        app:layout_constraintLeft_toRightOf="@+id/city"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -131,7 +131,7 @@
         android:gravity="start"
         android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@+id/ParkingSpaces"
-        app:layout_constraintTop_toBottomOf="@+id/_BuildingNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/_bulidingNumber" />
 
     <TextView
         android:id="@+id/Place"

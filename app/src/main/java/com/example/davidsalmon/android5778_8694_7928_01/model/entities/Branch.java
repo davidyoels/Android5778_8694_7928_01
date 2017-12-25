@@ -108,32 +108,11 @@ public class Branch {
 
     public String toString()
     {
-        return " City: " + City + " Street: " +  Street + " Building Number: " + BuildingNumber + " Parking Spaces: " + ParkingSpacesNumber + " Brach Number: " + BranchNumber;
+        return " City: " + City + " Street: " +  Street + " Building Number: " + BuildingNumber + " Parking Spaces: " + ParkingSpacesNumber + " Branch Number: " + BranchNumber;
     }
 
 
     //********ContentValues*******
-    public static ContentValues BranchToContentValues(Branch branch){
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(Car_GoConst.BranchConst.CITY, branch.getCity());
-        contentValues.put(Car_GoConst.BranchConst.STREET, branch.getStreet());
-        contentValues.put(Car_GoConst.BranchConst.BUILDING_NUMBER, branch.getBuildingNumber());
-        contentValues.put(Car_GoConst.BranchConst.PARKING_SPACE_NUMBER, branch.getParkingSpacesNumber());
-        contentValues.put(Car_GoConst.BranchConst.BRANCH_NUMBER, branch.BranchNumber);
-
-        return contentValues;
-    }
-
-    public static Branch ContentValuesToBranch(ContentValues contentValues){
-
-        Branch branch = new Branch();
-        branch.setCity(contentValues.getAsString(Car_GoConst.BranchConst.CITY));
-        branch.setStreet(contentValues.getAsString(Car_GoConst.BranchConst.STREET));
-        branch.setBuildingNumber(contentValues.getAsInteger(Car_GoConst.BranchConst.BUILDING_NUMBER));
-        branch.setParkingSpacesNumber(contentValues.getAsInteger(Car_GoConst.BranchConst.PARKING_SPACE_NUMBER));
-        branch.setBranchNumber(contentValues.getAsInteger(Car_GoConst.BranchConst.BRANCH_NUMBER));
-        return branch;
-    }
 
 }

@@ -68,14 +68,14 @@ public class AddCarModel extends Activity implements View.OnClickListener{
                 int SeatsNumber = Integer.valueOf(this.SeatNumberEditTextS.getText().toString());
                 String CompanyName = this.CompanyNameEditText.getText().toString();
                 String ModelName = this.ModelNameEditText.getText().toString();
-                Gearbox gearbox =  (Gearbox) this.GearBoxSpinner.getSelectedItem();
+                String gearbox =  ((Gearbox) GearBoxSpinner.getSelectedItem()).name();
 
                 if(ModelCode == 0 || CompanyName.isEmpty() || ModelName.isEmpty() )
                     toast.show();
                 else {
                     contentValues.put(Car_GoConst.CarModelConst.COMPANY_NAME, CompanyName);
                     contentValues.put(Car_GoConst.CarModelConst.ENGINE_CAPACITY, EngineCapacity);
-                    contentValues.put(Car_GoConst.CarModelConst.GEAR_BOX, gearbox.toString());
+                    contentValues.put(Car_GoConst.CarModelConst.GEAR_BOX, gearbox);
                     contentValues.put(Car_GoConst.CarModelConst.MODEL_CODE, ModelCode);
                     contentValues.put(Car_GoConst.CarModelConst.MODEL_NAME, ModelName);
                     contentValues.put(Car_GoConst.CarModelConst.SEATS_NUMBER, SeatsNumber);

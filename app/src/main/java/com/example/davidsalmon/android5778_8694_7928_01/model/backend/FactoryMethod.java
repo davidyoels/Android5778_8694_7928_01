@@ -12,8 +12,8 @@ public class FactoryMethod {
 
     public static DB_manager getManager() {
         if (manager == null)
-            manager = new List_DBManager();
-        //manager = new MySQL_DBManager();
+            //manager = new List_DBManager();
+        manager = new MySQL_DBManager();
         return manager;
     }
 }

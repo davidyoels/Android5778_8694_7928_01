@@ -1,5 +1,6 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -22,6 +23,7 @@ public class AddBracnh extends Activity implements View.OnClickListener {
     private EditText ParkingSpacesNumberEditText;
     private EditText BranchNumberEditText;
     private Button addBracnhButton;
+
     void findViews()
     {
         CityEditText = (EditText) findViewById(R.id.CityEditText);
@@ -32,55 +34,63 @@ public class AddBracnh extends Activity implements View.OnClickListener {
         addBracnhButton = (Button) findViewById(R.id.addBranchButton);
         addBracnhButton.setOnClickListener( this );
     }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bracnh);
         findViews();
     }
+
+
     public void onClick(View v)
     {
-      if (v==addBracnhButton)
+      if (v == addBracnhButton)
           addBracnh();
 
     }
+
+
+    @SuppressLint("StaticFieldLeak")
     void addBracnh() {
-        Context context = getApplicationContext();
-        CharSequence text = "one of the filed isnt correct";
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
         final ContentValues contentValues = new ContentValues();
         try {
-            int branch_number = Integer.valueOf(this.BranchNumberEditText.getText().toString());
+            final int branch_number = Integer.valueOf(this.BranchNumberEditText.getText().toString());
             int building_number = Integer.valueOf(this.BuildingNumberEditText.getText().toString());
             int parking_spaces = Integer.valueOf(this.ParkingSpacesNumberEditText.getText().toString());
             String city = CityEditText.getText().toString();
             String street = StreetEditText.getText().toString();
 
-            contentValues.put(Car_GoConst.BranchConst.CITY, city);
-            contentValues.put(Car_GoConst.BranchConst.STREET, street);
-            contentValues.put(Car_GoConst.BranchConst.BRANCH_NUMBER, branch_number);
-            contentValues.put(Car_GoConst.BranchConst.BUILDING_NUMBER, building_number);
-            contentValues.put(Car_GoConst.BranchConst.PARKING_SPACE_NUMBER, parking_spaces);
-            new AsyncTask<Void, Void, Long>() {
-                @Override
-                protected void onPostExecute(Long idResult)
-                {
-                    super.onPostExecute(idResult);
-                    if (idResult > 0)
-                        Toast.makeText(getBaseContext(), "insert branch: " + idResult, Toast.LENGTH_LONG).show();
-                }
-                @Override
-                protected Long doInBackground(Void... params)
-                {
-                    return FactoryMethod.getManager().addBranch(contentValues);
-                }}.execute();
-            finish();
+            if(city.isEmpty() || branch_number == 0 || building_number == 0 || street.isEmpty() )
+                throw new Exception("one of the filed missed");
+            else {
+                contentValues.put(Car_GoConst.BranchConst.CITY, city);
+                contentValues.put(Car_GoConst.BranchConst.STREET, street);
+                contentValues.put(Car_GoConst.BranchConst.BRANCH_NUMBER, branch_number);
+                contentValues.put(Car_GoConst.BranchConst.BUILDING_NUMBER, building_number);
+                contentValues.put(Car_GoConst.BranchConst.PARKING_SPACE_NUMBER, parking_spaces);
 
+                new AsyncTask<Void, Void, Integer>() {
+                    @Override
+                    protected Integer doInBackground(Void... params)
+                    {
+                        return FactoryMethod.getManager().addBranch(contentValues);
+                    }
+
+                    @Override
+                    protected void onPostExecute(Integer idResult)
+                    {
+                        super.onPostExecute(idResult);
+                        if (idResult > 0)
+                            Toast.makeText(getBaseContext(), "insert branch: " + idResult, Toast.LENGTH_LONG).show();
+                    }
+                }.execute();
+
+
+            }
         } catch (Exception e) {
-
-            toast.show();
-
+            Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
     }

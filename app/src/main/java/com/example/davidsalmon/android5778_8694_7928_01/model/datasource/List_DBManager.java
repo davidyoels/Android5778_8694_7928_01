@@ -6,7 +6,6 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoCons
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.*;
 
-import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch.ContentValuesToBranch;
 import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.CarsModel.ContentValuesToCarModel;
 import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client.ContentValuesToClient;
 
@@ -64,8 +63,8 @@ public class List_DBManager implements DB_manager {
         return car.getCarNumber();
     }
     @Override
-    public long addBranch(ContentValues newBranch) {
-        Branch branch = ContentValuesToBranch(newBranch);
+    public int addBranch(ContentValues newBranch) {
+        Branch branch = Car_GoConst.ContentValuesToBranch(newBranch);
         branchs.add(branch);
         return branch.getBranchNumber();
     }
