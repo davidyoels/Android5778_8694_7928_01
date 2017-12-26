@@ -4,6 +4,7 @@ import android.content.ContentValues;
 
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Car;
+import com.example.davidsalmon.android5778_8694_7928_01.model.entities.CarsModel;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Gearbox;
 
 /**
@@ -29,12 +30,12 @@ public class Car_GoConst {
     }
 
     public static class CarModelConst {
-        public static final String MODEL_CODE = "model_code";
+        public static final String MODEL_CODE = "_id";
         public static final String COMPANY_NAME = "company_name";
         public static final String MODEL_NAME = "model_name";
         public static final String ENGINE_CAPACITY = "engine_capacity";
-        public static final String GEAR_BOX = "gear_box";
-        public static final String SEATS_NUMBER = "seats_number";
+        public static final String GEAR_BOX = "gearbox";
+        public static final String SEATS_NUMBER = "seat_number";
     }
 
     public static class ClientConst {
@@ -84,6 +85,28 @@ public class Car_GoConst {
         branch.setParkingSpacesNumber(contentValues.getAsInteger(BranchConst.PARKING_SPACE_NUMBER));
 
         return branch;
+    }
+
+    public static ContentValues CarModelToContentValues(CarsModel carModel) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Car_GoConst.CarModelConst.MODEL_CODE, carModel.getModelCode());
+        contentValues.put(Car_GoConst.CarModelConst.COMPANY_NAME, carModel.getCompanyName());
+        contentValues.put(Car_GoConst.CarModelConst.MODEL_NAME, carModel.getModelName());
+        contentValues.put(Car_GoConst.CarModelConst.ENGINE_CAPACITY, carModel.getEngineCapacity());
+        contentValues.put(Car_GoConst.CarModelConst.GEAR_BOX, carModel.getGearBox().toString());
+        contentValues.put(Car_GoConst.CarModelConst.SEATS_NUMBER, carModel.getSeatsNumber());
+        return contentValues;
+    }
+
+    public static CarsModel ContentValuesToCarModel(ContentValues contentValues) {
+        CarsModel carModel = new CarsModel();
+        carModel.setCompanyName(contentValues.getAsString(Car_GoConst.CarModelConst.COMPANY_NAME));
+        carModel.setEngineCapacity(contentValues.getAsInteger(Car_GoConst.CarModelConst.ENGINE_CAPACITY));
+        carModel.setGearBox(Gearbox.valueOf(contentValues.getAsString(Car_GoConst.CarModelConst.GEAR_BOX)));
+        carModel.setModelCode(contentValues.getAsInteger(Car_GoConst.CarModelConst.MODEL_CODE));
+        carModel.setModelName(contentValues.getAsString(Car_GoConst.CarModelConst.MODEL_NAME));
+        carModel.setSeatsNumber(contentValues.getAsInteger(Car_GoConst.CarModelConst.SEATS_NUMBER));
+        return carModel;
     }
 
 }

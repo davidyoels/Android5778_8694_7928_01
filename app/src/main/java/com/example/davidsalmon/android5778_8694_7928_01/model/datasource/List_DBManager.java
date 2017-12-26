@@ -6,7 +6,6 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoCons
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.*;
 
-import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.CarsModel.ContentValuesToCarModel;
 import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client.ContentValuesToClient;
 
 import java.util.ArrayList;
@@ -50,8 +49,8 @@ public class List_DBManager implements DB_manager {
     }
 
     @Override
-    public long addModel(ContentValues newModel) {
-        CarsModel model = ContentValuesToCarModel(newModel);
+    public int addModel(ContentValues newModel) {
+        CarsModel model = Car_GoConst.ContentValuesToCarModel(newModel);
         carsModels.add(model);
         return model.getModelCode();
     }

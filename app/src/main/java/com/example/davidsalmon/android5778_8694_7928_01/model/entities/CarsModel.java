@@ -115,29 +115,7 @@ public class CarsModel {
     }
 
     //********ContentValues*******
-    public static ContentValues CarModelToContentValues(CarsModel carModel) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(Car_GoConst.CarModelConst.MODEL_CODE, carModel.ModelCode);
-        contentValues.put(Car_GoConst.CarModelConst.COMPANY_NAME, carModel.CompanyName);
-        contentValues.put(Car_GoConst.CarModelConst.MODEL_NAME, carModel.ModelName);
-        contentValues.put(Car_GoConst.CarModelConst.ENGINE_CAPACITY, carModel.EngineCapacity);
-        //gearbox need to check if this is the right cast
-        contentValues.put(Car_GoConst.CarModelConst.GEAR_BOX, carModel.GearBox.toString());
-        contentValues.put(Car_GoConst.CarModelConst.SEATS_NUMBER, carModel.SeatsNumber);
-        return contentValues;
-    }
 
-    public static CarsModel ContentValuesToCarModel(ContentValues contentValues) {
-        CarsModel carModel = new CarsModel();
-        carModel.setCompanyName(contentValues.getAsString(Car_GoConst.CarModelConst.COMPANY_NAME));
-        carModel.setEngineCapacity(contentValues.getAsInteger(Car_GoConst.CarModelConst.ENGINE_CAPACITY));
-        //need to check how to cast enum
-        //carModel.setGearBox(contentValues.getAsString(Car_GoConst.CarModelConst.GEAR_BOX));
-        carModel.setModelCode(contentValues.getAsInteger(Car_GoConst.CarModelConst.MODEL_CODE));
-        carModel.setModelName(contentValues.getAsString(Car_GoConst.CarModelConst.MODEL_NAME));
-        carModel.setSeatsNumber(contentValues.getAsInteger(Car_GoConst.CarModelConst.SEATS_NUMBER));
-        return carModel;
-    }
 
 
 }

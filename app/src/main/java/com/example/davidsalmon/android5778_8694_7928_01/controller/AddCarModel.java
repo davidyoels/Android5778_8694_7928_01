@@ -3,6 +3,8 @@ package com.example.davidsalmon.android5778_8694_7928_01.controller;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -80,14 +82,31 @@ public class AddCarModel extends Activity implements View.OnClickListener{
                     contentValues.put(Car_GoConst.CarModelConst.MODEL_NAME, ModelName);
                     contentValues.put(Car_GoConst.CarModelConst.SEATS_NUMBER, SeatsNumber);
 
-                    FactoryMethod.getManager().addModel(contentValues);
-                    finish();
+                    new AsyncTask<Void, Void, Integer>() {
+                        @Override
+                        protected Integer doInBackground(Void... params)
+                        {
+                            Integer result = FactoryMethod.getManager().addModel(contentValues);
+                            return result;
+                        }
+
+                        @Override
+                        protected void onPostExecute(Integer idResult)
+                        {
+                            super.onPostExecute(idResult);
+                            if (idResult > 0)
+                                Toast.makeText(getBaseContext(), "insert model: " + idResult, Toast.LENGTH_LONG).show();
+                        }
+                    }.execute();
                 }
             } catch (Exception e) {
 
                 toast.show();
 
             }
+
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
 
         }
     }

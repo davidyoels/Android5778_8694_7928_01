@@ -38,8 +38,21 @@ public class MySQL_DBManager implements DB_manager {
     }
 
     @Override
-    public long addModel(ContentValues newModel) {
-        return 0;
+    public int addModel(ContentValues newModel) {
+        try{
+            String result = PHPtools.POST(WEB_URL + "/insertCarModel.php", newModel);
+            String s = result.trim();
+            int id = Integer.parseInt(s) ;
+            //          if (id > 0)
+//                SetUpdate();
+            printLog("addCarModel:\n" + 1);
+            return id;
+        } catch (IOException e) {
+            e.getMessage();
+            printLog("addCarModel Exception:\n" + e);
+
+            return -1;
+        }
     }
 
     @Override
@@ -64,13 +77,15 @@ public class MySQL_DBManager implements DB_manager {
 
         try{
             String result = PHPtools.POST(WEB_URL + "/insertBranch.php", newBranch);
-            Integer id = Integer.parseInt(result);
+            int id = Integer.getInteger(result) ;
   //          if (id > 0)
 //                SetUpdate();
             printLog("addStudent:\n" + result);
                 return id;
         } catch (IOException e) {
+            e.getMessage();
             printLog("addBranch Exception:\n" + e);
+
             return -1;
         }
 
@@ -78,6 +93,23 @@ public class MySQL_DBManager implements DB_manager {
 
     @Override
     public List<CarsModel> AllCarsModel() {
+        List<CarsModel> result = new ArrayList<CarsModel>();
+
+        try{
+            String str = PHPtools.GET(WEB_URL+"/getAllCarModels.php");
+            JSONArray jsonArray = new JSONObject(str).getJSONArray("cars_model");
+
+            for( int i=0; i<jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                ContentValues contentValues = PHPtools.JsonToContentValues(jsonObject);
+                CarsModel carsModel = Car_GoConst.ContentValuesToCarModel(contentValues);
+                result.add(carsModel);
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

@@ -10,13 +10,11 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AddCar extends Activity implements View.OnClickListener  {
+public class AddCar extends Activity implements View.OnClickListener {
 
     private EditText BranchNumberEditText;
     private EditText ModelTypeEditText;
@@ -40,10 +38,6 @@ public class AddCar extends Activity implements View.OnClickListener  {
     private EditText CarNumberEditText;
     private Button addCarButton;
     private Spinner ModelTypeEditText_spinner;
-    List<CarsModel> CarsModel_list = FactoryMethod.getManager().AllCarsModel();
-    List<String> strings = new ArrayList<>();
-
-
 
     void findViews() {
         BranchNumberEditText = (EditText) findViewById(R.id.BranchNumberEditText);
@@ -54,26 +48,18 @@ public class AddCar extends Activity implements View.OnClickListener  {
         addCarButton.setOnClickListener(this);
 
         //from list of model type to spinner
-        Spinner ModelTypeEditText_spinner = (Spinner) findViewById(R.id.ModelTypeEditText_spinner);
+        final Spinner ModelTypeEditText_spinner = (Spinner) findViewById(R.id.ModelTypeEditText_spinner);
+
+        List<CarsModel> CarsModel_list = new ArrayList<CarsModel>();
+        CarsModel_list = FactoryMethod.getManager().AllCarsModel();
+        //ModelTypeEditText_spinner.setAdapter(new ArrayAdapter<CarsModel>(this, android.R.layout.simple_spinner_item,CarsModel_list )){
+        final List<CarsModel> finalCarsModel_list = CarsModel_list;
+        Adapter adapter = new ArrayAdapter<CarsModel>(this, R.layout.spiner_modeltype, finalCarsModel_list);
 
 
 
-        SpinnerAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,CarModel_toString(CarsModel_list));
-        ModelTypeEditText_spinner.setAdapter(adapter);
 
 
-
-
-
-
-    }
-
-    private List<String> CarModel_toString(List<CarsModel> carsModel_list) {
-
-        for (CarsModel item:carsModel_list) {
-            strings.add(new String(item.getCompanyName() + "  " + item.getModelName()));
-        }
-        return strings;
     }
 
     @Override
@@ -96,7 +82,7 @@ public class AddCar extends Activity implements View.OnClickListener  {
 
         final ContentValues contentValues = new ContentValues();
         try{
-            int branch_number = CarsModel_list.get(ModelTypeEditText_spinner.getSelectedItemPosition()).getModelCode();
+            int branch_number = Integer.valueOf(this.BranchNumberEditText.getText().toString());
             int kilometers = Integer.valueOf(this.KilometersEditText.getText().toString());
             int model_type = Integer.valueOf(this.ModelTypeEditText.getText().toString());
             final String car_number = CarNumberEditText.getText().toString();
@@ -122,9 +108,12 @@ public class AddCar extends Activity implements View.OnClickListener  {
                         super.onPostExecute(idResult);
                         idResult = car_number;
                         if (! idResult.isEmpty())
-                        Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
                     }
                 }.execute();
+
+
+
 
             }
         } catch (Exception e) {
@@ -134,6 +123,4 @@ public class AddCar extends Activity implements View.OnClickListener  {
         }
 
     }
-
-
 }
