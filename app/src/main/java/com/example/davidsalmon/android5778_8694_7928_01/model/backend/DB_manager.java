@@ -26,9 +26,11 @@ public interface DB_manager {
     /*boolean CarModelAvailable();
     boolean addInvitaion();
     boolean removeClient();
-    boolean removeCar();
+    vo removeCar();
     boolean removeCarModel();
     boolean removeInvitation();*/
+
+    void deleteModel(ContentValues _idDel);
 
 
 

@@ -55,6 +55,16 @@ public class MySQL_DBManager implements DB_manager {
         }
     }
 
+    public void deleteModel(ContentValues id) {
+        try{
+            PHPtools.POST(WEB_URL + "/deleteCarModel.php", id);
+        } catch (IOException e) {
+            e.getMessage();
+            printLog("addCarModel Exception:\n" + e);
+
+        }
+    }
+
     @Override
     public String addCar(ContentValues newCar) {
 
@@ -77,7 +87,8 @@ public class MySQL_DBManager implements DB_manager {
 
         try{
             String result = PHPtools.POST(WEB_URL + "/insertBranch.php", newBranch);
-            int id = Integer.getInteger(result) ;
+            String s = result.trim();
+            int id = Integer.parseInt(s) ;
   //          if (id > 0)
 //                SetUpdate();
             printLog("addStudent:\n" + result);

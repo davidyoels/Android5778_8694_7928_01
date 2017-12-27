@@ -1,13 +1,15 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
 import android.app.Activity;
-import android.app.ListActivity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Message;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.davidsalmon.android5778_8694_7928_01.R;
+import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.CarsModel;
 
@@ -25,8 +28,10 @@ public class ShowCarsModelList extends Activity {
     public List<CarsModel> getMyCarsModel() {
         return myCarsModel;
     }
+    int _idDel;
 
     public List<CarsModel> myCarsModel;
+
 
 
 
@@ -85,17 +90,70 @@ public class ShowCarsModelList extends Activity {
             }
         }.execute();
 
+
+        //DELETE item from list
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-                Toast.makeText(getBaseContext(), "hhhh", Toast.LENGTH_LONG).show();
-           //     listView.removeViewAt(position);
+                 _idDel = ((CarsModel)listView.getItemAtPosition(position)).getModelCode();
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ShowCarsModelList.this);
+                alertDialogBuilder.setTitle("Delete Car model");
+                alertDialogBuilder.setMessage("You are trying to delete a car model " + _idDel+ ",\n" +"Are you sure?");
+
+                alertDialogBuilder.setPositiveButton("Ok",onClickListener);
+                alertDialogBuilder.setNegativeButton("Cancel ",onClickListener);
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show( );
+
+
+
+
+
+
 
                 return false;
             }
         });
 
     }
+
+    AlertDialog.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
+
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+            switch (which)
+            {
+                case Dialog.BUTTON_NEGATIVE:
+                    Toast.makeText(getBaseContext(), "OK. we saved your data. ", Toast.LENGTH_LONG).show();
+                    break;
+                case Dialog.BUTTON_POSITIVE:
+                     final ContentValues contentValues = new ContentValues();
+                     contentValues.put(Car_GoConst.CarModelConst.MODEL_CODE, _idDel );
+
+                     new AsyncTask<Void, Void, Void>() {
+                         @Override
+                         protected Void doInBackground(Void... params)
+                         {
+                             FactoryMethod.getManager().deleteModel(contentValues);
+                             //return 1;
+                             return null;
+                         }
+
+
+                     }.execute();
+                     Toast.makeText(getBaseContext(), "Car code " + _idDel + "delete successfully!", Toast.LENGTH_LONG).show();
+                     finish();
+                     break;
+
+            }
+
+        } };
 
 
 }

@@ -88,5 +88,10 @@ public class List_DBManager implements DB_manager {
         return cars;
     }
 
+    @Override
+    public void deleteModel(ContentValues _idDel) {
+
+    }
+
 
 }
