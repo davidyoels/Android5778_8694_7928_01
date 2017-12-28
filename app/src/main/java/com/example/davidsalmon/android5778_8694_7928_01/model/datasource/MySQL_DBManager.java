@@ -65,11 +65,11 @@ public class MySQL_DBManager implements DB_manager {
 
         try {
             String result = PHPtools.POST(WEB_URL + "/insertCar.php", newCar);
-            String id = result;
+         //   String id = result;
 //            if (id > 0)
 //                SetUpdate();
 //            printLog("addStudent:\n" + result);
-            return id;
+            return "1";
         } catch (IOException e) {
             printLog("addCar Exception:\n" + e);
             return null;

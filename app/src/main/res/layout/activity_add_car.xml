@@ -64,7 +64,7 @@
     <Spinner
         android:id="@+id/ModelTypeEditText_spinner"
         android:layout_width="241dp"
-        android:layout_height="47dp"
+        android:layout_height="45dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
