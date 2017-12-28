@@ -1,5 +1,6 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -23,8 +24,20 @@ public class ShowClient extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_show_client);
         ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.constraintLay);
         constraintLayout.setOnClickListener(this);
-        initClientByListView(100);
+        new AsyncTask<Void, Void, List<Client>>() {
 
+            @Override
+            protected List<Client> doInBackground(Void... voids) {
+                initClientList(100);
+                return myClientList;
+            }
+
+            protected void onPostExecute(List<Client> myCarsModel) {
+                super.onPostExecute(myCarsModel);
+                initClientByListView(100);
+            }
+
+        }.execute();
     }
 
 
@@ -37,7 +50,6 @@ public class ShowClient extends AppCompatActivity implements View.OnClickListene
 
     public void initClientByListView(int size){
 
-        initClientList(size);
         ListView listView = new ListView(this);
         ArrayAdapter<Client> adapter = new ArrayAdapter<Client>(this, R.layout.activity_show_client, myClientList)
         {

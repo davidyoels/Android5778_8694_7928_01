@@ -3,7 +3,6 @@ package com.example.davidsalmon.android5778_8694_7928_01.controller;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -92,6 +91,5 @@ public class AddBracnh extends Activity implements View.OnClickListener {
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
     }
 }

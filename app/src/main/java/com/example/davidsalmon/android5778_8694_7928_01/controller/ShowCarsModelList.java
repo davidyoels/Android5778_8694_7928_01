@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -31,10 +30,6 @@ public class ShowCarsModelList extends Activity {
     int _idDel;
 
     public List<CarsModel> myCarsModel;
-
-
-
-
 
 
     @Override
@@ -108,8 +103,6 @@ public class ShowCarsModelList extends Activity {
 
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show( );
-
-
 
 
 

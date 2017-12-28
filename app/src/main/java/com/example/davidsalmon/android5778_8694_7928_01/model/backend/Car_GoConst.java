@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Car;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.CarsModel;
+import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Gearbox;
 
 /**
@@ -107,6 +108,29 @@ public class Car_GoConst {
         carModel.setModelName(contentValues.getAsString(Car_GoConst.CarModelConst.MODEL_NAME));
         carModel.setSeatsNumber(contentValues.getAsInteger(Car_GoConst.CarModelConst.SEATS_NUMBER));
         return carModel;
+    }
+
+    //Client
+    public static ContentValues ClientToContentValues(Client client) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Car_GoConst.ClientConst.FAMILY_NAME, client.getFamilyName());
+        contentValues.put(Car_GoConst.ClientConst.PRIVATE_NAME, client.getPrivateName());
+        contentValues.put(Car_GoConst.ClientConst.ID, client.getId());
+        contentValues.put(Car_GoConst.ClientConst.PHONE_NUMBER, client.getPhoneNumber());
+        contentValues.put(Car_GoConst.ClientConst.EMAIL, client.getEmail());
+        contentValues.put(Car_GoConst.ClientConst.CREDIT_CARD, client.getCreditCard());
+        return contentValues;
+    }
+
+    public static Client ContentValuesToClient(ContentValues contentValues) {
+        Client client = new Client();
+        client.setId(contentValues.getAsLong(Car_GoConst.ClientConst.ID));
+        client.setFamilyName(contentValues.getAsString(Car_GoConst.ClientConst.FAMILY_NAME));
+        client.setPrivateName(contentValues.getAsString(Car_GoConst.ClientConst.PRIVATE_NAME));
+        client.setPhoneNumber(contentValues.getAsString(Car_GoConst.ClientConst.PHONE_NUMBER));
+        client.setEmail(contentValues.getAsString(Car_GoConst.ClientConst.EMAIL));
+        client.setCreditCard(contentValues.getAsInteger(Car_GoConst.ClientConst.CREDIT_CARD));
+        return client;
     }
 
 }

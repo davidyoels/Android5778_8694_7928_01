@@ -76,7 +76,6 @@ public class PHPtools {
                     con.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
-
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }

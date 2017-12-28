@@ -5,9 +5,6 @@ import android.content.ContentValues;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.*;
-
-import static com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client.ContentValuesToClient;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +40,7 @@ public class List_DBManager implements DB_manager {
 
     @Override
     public long addUser(ContentValues newClient) {
-        Client client = ContentValuesToClient(newClient);
+        Client client = Car_GoConst.ContentValuesToClient(newClient);
         clients.add(client);
         return client.getId();
     }

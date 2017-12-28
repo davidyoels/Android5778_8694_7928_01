@@ -1,10 +1,5 @@
 package com.example.davidsalmon.android5778_8694_7928_01.model.entities;
 
-import android.content.ContentValues;
-import android.provider.ContactsContract;
-
-import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
-
 /**
  * Created by david salmon on 11/4/2017.
  */
@@ -119,25 +114,5 @@ public class Client {
     }
 
     //********ContentValues*******
-    public static ContentValues ClientToContentValues(Client client) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(Car_GoConst.ClientConst.FAMILY_NAME, client.FamilyName);
-        contentValues.put(Car_GoConst.ClientConst.PRIVATE_NAME, client.PrivateName);
-        contentValues.put(Car_GoConst.ClientConst.ID, client.Id);
-        contentValues.put(Car_GoConst.ClientConst.PHONE_NUMBER, client.PhoneNumber);
-        contentValues.put(Car_GoConst.ClientConst.EMAIL, client.email);
-        contentValues.put(Car_GoConst.ClientConst.CREDIT_CARD, client.CreditCard);
-        return contentValues;
-    }
 
-    public static Client ContentValuesToClient(ContentValues contentValues) {
-        Client client = new Client();
-        client.setId(contentValues.getAsLong(Car_GoConst.ClientConst.ID));
-        client.setFamilyName(contentValues.getAsString(Car_GoConst.ClientConst.FAMILY_NAME));
-        client.setPrivateName(contentValues.getAsString(Car_GoConst.ClientConst.PRIVATE_NAME));
-        client.setPhoneNumber(contentValues.getAsString(Car_GoConst.ClientConst.PHONE_NUMBER));
-        client.setEmail(contentValues.getAsString(Car_GoConst.ClientConst.EMAIL));
-        client.setCreditCard(contentValues.getAsInteger(Car_GoConst.ClientConst.CREDIT_CARD));
-        return client;
-    }
 }
