@@ -1,5 +1,6 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -25,24 +26,32 @@ public class BranchesFragment extends Fragment {
     public static final String TAB = "Tab1Fragment";
     List<Branch> myBranchsList;
     ViewGroup viewGroup;
+    View v;
     FloatingActionButton add;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.branchs_fragment,container,false);
+        View view = inflater.inflate(R.layout.branchs_fragment, container, false);
         viewGroup = (ViewGroup) inflater.inflate(R.layout.branchs_fragment, container, false);
-        View  v = initCarByListView(100);
-        add = (FloatingActionButton) getActivity().findViewById(R.id.add);
-       
+        new AsyncTask<Void, View, List<Branch>>() {
 
+            @Override
+            protected List<Branch> doInBackground(Void... voids) {
+                initCarList(40);
+                return myBranchsList;
+            }
+
+        }.execute();
+        while(myBranchsList==null){}
+        v = initCarByListView(40);
         return v;
+
     }
     public  void initCarList (int size){
         myBranchsList = FactoryMethod.getManager().AllBranch();
     }
     public View initCarByListView(int size){
 
-        initCarList(size);
         ListView listView = new ListView(this.getActivity());
         ArrayAdapter<Branch> adapter = new ArrayAdapter<Branch>(this.getActivity(), R.layout.branchs_fragment, myBranchsList)
         {

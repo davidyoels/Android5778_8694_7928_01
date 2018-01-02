@@ -1,5 +1,6 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,30 +25,39 @@ public class ClientFragment extends Fragment {
     public static final String TAB = "ClientFragment";
     List<Client> myClientsList;
     ViewGroup viewGroup;
+    View v;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.client_fragment, container, false);
-        View  v = initCarByListView(100);
+        //View  v = initCarByListView(100);
+        new AsyncTask<Void, Void, List<Client>>() {
 
+            @Override
+            protected List<Client> doInBackground(Void... voids) {
+                initClientList(40);
+                return myClientsList;
+            }
 
-        return v;
+        }.execute();
+        while(myClientsList==null){}
+        v = initClientByListView(40);
+          return v;
     }
-    public  void initCarList (int size){
+    public  void initClientList (int size){
         myClientsList = FactoryMethod.getManager().AllUsers();
     }
-    public View initCarByListView(int size){
+    public View initClientByListView(int size){
 
-        initCarList(size);
         ListView listView = new ListView(this.getActivity());
-        ArrayAdapter<Client> adapter = new ArrayAdapter<Client>(this.getActivity(), R.layout.client_fragment, myClientsList)
+        ArrayAdapter<Client> adapter = new ArrayAdapter<Client>(this.getActivity(), R.layout.show_cient_constraint, myClientsList)
         {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
 
                 if (convertView == null)    {
-                    convertView = View.inflate(ClientFragment.this.getActivity(), R.layout.client_fragment,null);
+                    convertView = View.inflate(ClientFragment.this.getActivity(), R.layout.show_cient_constraint,null);
                 }
 
                 TextView productId_firstName_TextView = (TextView) convertView.findViewById(R.id._FirstName);

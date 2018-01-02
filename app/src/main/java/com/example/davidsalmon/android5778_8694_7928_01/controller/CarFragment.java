@@ -1,5 +1,6 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,12 +25,22 @@ public class CarFragment extends Fragment{
     public static final String TAB = "CarFragment";
     List<Car> myCarList;
     ViewGroup viewGroup;
+    View v;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.car_fragment,container,false);
         viewGroup = (ViewGroup) inflater.inflate(R.layout.car_fragment, container, false);
-        View  v = initCarByListView(100);
+        new AsyncTask<Void, View, List<Car>>() {
+
+            @Override
+            protected List<Car> doInBackground(Void... voids) {
+                initCarList(40);
+                return myCarList;
+            }
+        }.execute();
+        while (myCarList==null){}
+        v = initCarByListView(100);
         return v;
     }
     public  void initCarList (int size){
@@ -37,7 +48,6 @@ public class CarFragment extends Fragment{
     }
     public View initCarByListView(int size){
 
-        initCarList(size);
         ListView listView = new ListView(this.getActivity());
         ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(this.getActivity(), R.layout.car_fragment, myCarList)
         {

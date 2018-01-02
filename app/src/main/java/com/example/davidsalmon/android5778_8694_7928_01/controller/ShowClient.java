@@ -2,7 +2,6 @@ package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +15,13 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client;
 
 import java.util.List;
 
-public class ShowClient extends AppCompatActivity implements View.OnClickListener{
+public class ShowClient extends AppCompatActivity {
     List<Client> myClientList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_client);
-        ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.constraintLay);
-        constraintLayout.setOnClickListener(this);
         new AsyncTask<Void, Void, List<Client>>() {
 
             @Override
@@ -41,24 +39,20 @@ public class ShowClient extends AppCompatActivity implements View.OnClickListene
     }
 
 
-
     private void initClientList(int size) {
-       myClientList = FactoryMethod.getManager().AllUsers();
+        myClientList = FactoryMethod.getManager().AllUsers();
     }
 
 
-
-    public void initClientByListView(int size){
+    public void initClientByListView(int size) {
 
         ListView listView = new ListView(this);
-        ArrayAdapter<Client> adapter = new ArrayAdapter<Client>(this, R.layout.activity_show_client, myClientList)
-        {
-
+        ArrayAdapter<Client> adapter = new ArrayAdapter<Client>(getBaseContext(), R.layout.show_cient_constraint, myClientList) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
 
-                if (convertView == null)    {
-                    convertView = View.inflate(ShowClient.this, R.layout.activity_show_client,null);
+                if (convertView == null) {
+                    convertView = View.inflate(ShowClient.this, R.layout.show_cient_constraint, null);
                 }
                 TextView productId_firstName_TextView = (TextView) convertView.findViewById(R.id._FirstName);
                 TextView productId_lastName_TextView = (TextView) convertView.findViewById(R.id._LastName);
@@ -83,9 +77,4 @@ public class ShowClient extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    @Override
-    public void onClick(View view) {
-        //Intent intent = new Intent(this,AddBracnh.class);
-        //startActivity(intent);
-    }
 }
