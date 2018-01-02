@@ -44,6 +44,7 @@ public class CarFragment extends Fragment{
         return v;
     }
     public  void initCarList (int size){
+
         myCarList = FactoryMethod.getManager().AllCars();
     }
     public View initCarByListView(int size){
