@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
+import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.CarsModel;
 
 import java.util.ArrayList;
@@ -30,9 +31,12 @@ public class AddCar extends Activity implements View.OnClickListener  {
     private EditText CarNumberEditText;
     private Button addCarButton;
     private Spinner ModelTypeEditText_spinner;
+    private Spinner BranchEditText_spinner;
 
     List<CarsModel> CarsModel_list = new ArrayList<CarsModel>();
+    List<Branch> branchList = new ArrayList<>();
     List<String> strings = new ArrayList<>();
+    List<String> strings2 = new ArrayList<>();
 
 
 
@@ -63,6 +67,25 @@ public class AddCar extends Activity implements View.OnClickListener  {
             }
         }.execute();
 
+        //spiner of branch list
+        BranchEditText_spinner = (Spinner)findViewById(R.id.BranchEditText_spinner);
+        new AsyncTask<Void, Void, List<Branch>>() {
+
+
+            @Override
+            protected List<Branch> doInBackground(Void... voids) {
+                branchList = FactoryMethod.getManager().AllBranch();
+                return branchList;
+            }
+
+            @Override
+            protected void onPostExecute(List<Branch> branchList) {
+                super.onPreExecute();
+                SpinnerAdapter adapter2 = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item,Branch_toString(branchList));
+                BranchEditText_spinner.setAdapter(adapter2);
+            }
+        }.execute();
+
 
 
 
@@ -75,7 +98,13 @@ public class AddCar extends Activity implements View.OnClickListener  {
         }
         return strings;
     }
+    private List<String> Branch_toString(List<Branch> branchList) {
 
+        for (Branch item:branchList) {
+            strings2.add(new String(item.getBranchNumber() + "  " + item.getCity() + "," + item.getStreet() ));
+        }
+        return strings2;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,34 +125,41 @@ public class AddCar extends Activity implements View.OnClickListener  {
 
         final ContentValues contentValues = new ContentValues();
         try{
-            int branch_number = Integer.valueOf(this.BranchNumberEditText.getText().toString());
+            int branch_number = branchList.get(BranchEditText_spinner.getSelectedItemPosition()).getBranchNumber();
             int kilometers = Integer.valueOf(this.KilometersEditText.getText().toString());
-            Object s = ModelTypeEditText_spinner.getSelectedItem();
             int model_type = CarsModel_list.get(ModelTypeEditText_spinner.getSelectedItemPosition()).getModelCode();
-            final String car_number = CarNumberEditText.getText().toString();
+            final int car_number = Integer.valueOf(this.CarNumberEditText.getText().toString());
 
-            if(car_number.isEmpty() || model_type == 0 || kilometers == 0 || branch_number == 0 )
+            if(car_number == 0 || model_type == 0 || kilometers == 0 || branch_number == 0 )
                 throw new Exception("one of the filed isn't correct");
             else {
                 contentValues.put(Car_GoConst.CarConst.BRANCH_NUMBER, branch_number);
                 contentValues.put(Car_GoConst.CarConst.MODEL_TYPE, model_type);
                 contentValues.put(Car_GoConst.CarConst.KILOMETERS, kilometers);
                 contentValues.put(Car_GoConst.CarConst.CAR_NUMBER, car_number);
+                contentValues.put(Car_GoConst.CarConst.IN_USE, false);
 
-                new AsyncTask<Void,Void,String>(){
+                new AsyncTask<Void,Void,Integer>(){
 
 
                     @Override
-                    protected String doInBackground(Void... voids) {
-                        String resoult =  FactoryMethod.getManager().addCar(contentValues);
-                        return car_number;
+                    protected Integer doInBackground(Void... voids) {
+
+
+                        int result = 0;
+                        try {
+                            result = FactoryMethod.getManager().addCar(contentValues);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        return result;
                     }
 
                     @Override
-                    protected void onPostExecute(String idResult) { //where idResult came??
+                    protected void onPostExecute(Integer idResult) {
                         super.onPostExecute(idResult);
-                        idResult = car_number;
-                        if (! idResult.isEmpty())
+                        //idResult = car_number; //this is kind of solution.
+                        if ( idResult != 0)
                             Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
                     }
                 }.execute();

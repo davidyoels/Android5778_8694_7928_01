@@ -53,7 +53,7 @@ public class List_DBManager implements DB_manager {
     }
 
     @Override
-    public String addCar(ContentValues newCar) {
+    public int addCar(ContentValues newCar) {
         Car car = Car_GoConst.ContentValuesToCar(newCar);
         cars.add(car);
         return car.getCarNumber();
