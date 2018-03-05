@@ -51,7 +51,7 @@ public class ShowCarsList extends AppCompatActivity {
 
                         productId_carModel_TextView.setText(((Integer)myCarList.get(position).getModelType()).toString());
                         productId_Kilometer_TextView.setText(((Integer)myCarList.get(position).getKilometers()).toString());
-                        productId_carNumber_TextView.setText(myCarList.get(position).getCarNumber());
+                        productId_carNumber_TextView.setText(((Integer)myCarList.get(position).getCarNumber()).toString());
                         productId_carBranch_TextView.setText(((Integer)myCarList.get(position).getBranchNumber()).toString());
 
                         return convertView;

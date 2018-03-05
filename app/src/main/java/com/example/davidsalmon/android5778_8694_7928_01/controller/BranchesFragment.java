@@ -44,7 +44,7 @@ public class BranchesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.branchs_fragment, container, false);
+       // View view = inflater.inflate(R.layout.branchs_fragment, container, false);
         viewGroup = (ViewGroup) inflater.inflate(R.layout.branchs_fragment, container, false);
         v = initCarByListView(40);
         random = new Random(7);

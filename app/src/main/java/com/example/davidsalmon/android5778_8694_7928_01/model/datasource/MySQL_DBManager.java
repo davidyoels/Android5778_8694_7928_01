@@ -1,6 +1,7 @@
 package com.example.davidsalmon.android5778_8694_7928_01.model.datasource;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.util.Log;
 
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
@@ -97,19 +98,23 @@ public class MySQL_DBManager implements DB_manager {
      * @return "1" in case he succeed to add.
      */
     @Override
-    public String addCar(ContentValues newCar) {
+    public int addCar(ContentValues newCar)  {
+
 
         try {
             String result = PHPtools.POST(WEB_URL + "/insertCar.php", newCar);
-         //   String id = result;
+            String s = result.trim();
+            int id = Integer.parseInt(s) ;
+
 //            if (id > 0)
 //                SetUpdate();
 //            printLog("addStudent:\n" + result);
-            return "1";
+            return id;
         } catch (IOException e) {
             printLog("addCar Exception:\n" + e);
-            return null;
+            return -1;
         }
+
     }
 
     /**
