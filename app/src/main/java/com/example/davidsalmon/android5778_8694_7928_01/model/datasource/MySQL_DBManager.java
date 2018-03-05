@@ -266,6 +266,7 @@ public class MySQL_DBManager implements DB_manager {
                 //car.setImage(jsonObject.getString("image"));
                 */
 
+
                 ContentValues contentValues = PHPtools.JsonToContentValues(jsonObject);
                 Car car = Car_GoConst.ContentValuesToCar(contentValues);
                 result.add(car);
