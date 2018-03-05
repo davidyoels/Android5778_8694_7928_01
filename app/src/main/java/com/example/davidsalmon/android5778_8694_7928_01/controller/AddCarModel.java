@@ -18,10 +18,15 @@ import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Gearbox;
+
+/**
+ * this class is the code behind of the activity_add_car_model that handel the activity's events.
+ * class that add a new Car Model.
+ */
 public class AddCarModel extends Activity implements View.OnClickListener{
 
 
-
+    //definition for the instance views we will get.
     private EditText ModelCodeEditText;
     private EditText CompanyNameEditText;
     private EditText ModelNameEditText;
@@ -31,7 +36,10 @@ public class AddCarModel extends Activity implements View.OnClickListener{
     private Button button;
 
 
-
+    /**
+     * the findViews function gets the instance of the views
+     * and make the add button to listen the click event.
+     */
     private void findViews() {
         ModelCodeEditText = (EditText)findViewById( R.id.ModelCode_editText );
         CompanyNameEditText = (EditText)findViewById( R.id.CompanyName_editText );
@@ -47,6 +55,10 @@ public class AddCarModel extends Activity implements View.OnClickListener{
         button.setOnClickListener( this );
     }
 
+    /**
+     * the function create the activity and find the views.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +66,10 @@ public class AddCarModel extends Activity implements View.OnClickListener{
         findViews();
     }
 
-
+    /**
+     * the function take all the information that has been insert and send it by thread in the background to
+     * the php page to add the new Car Model.
+     */
     @Override
     public void onClick(View v) {
         if ( v == button ) {

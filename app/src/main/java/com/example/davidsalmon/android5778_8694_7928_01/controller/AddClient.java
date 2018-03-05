@@ -16,6 +16,7 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMet
 
 public class AddClient extends Activity implements View.OnClickListener{
 
+    //definition for the instance views we will get.
     private EditText NameEditText13;
     private EditText FamilyNameEditText14;
     private EditText IdEditText15;
@@ -26,7 +27,10 @@ public class AddClient extends Activity implements View.OnClickListener{
 
 
 
-
+    /**
+     * the findViews function gets the instance of the views.
+     * and make the add button to listen the click event.
+     */
     private void findViews() {
         NameEditText13 = (EditText)findViewById( R.id.Name_editText13 );
         FamilyNameEditText14 = (EditText)findViewById( R.id.FamilyName_editText14 );
@@ -38,7 +42,10 @@ public class AddClient extends Activity implements View.OnClickListener{
 
         AddClientButton.setOnClickListener( this );
     }
-
+    /**
+     * the function create the activity and find the views.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +55,13 @@ public class AddClient extends Activity implements View.OnClickListener{
     }
 
 
-
+    /**
+     * check if the click is the add button click.
+     * the function take all the information that has been insert and send it by thread in the background to
+     * the php page to add the new Client.
+     * @param v represent the view of the event that have been occurred.
+     *
+     */
     @Override
     public void onClick(View v) {
         if ( v == AddClientButton ) {

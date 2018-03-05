@@ -4,6 +4,9 @@ import android.content.ContentValues;
 
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 
+/**
+ * Car model class represents the car model to rent.
+ */
 public class CarsModel {
 
     private int ModelCode;//_id
@@ -13,10 +16,21 @@ public class CarsModel {
     private Gearbox GearBox;
     private int SeatsNumber;
 
-    //default constructor
+    /**
+     * default constructor.
+     */
     public CarsModel() {
     }
 
+    /**
+     * constructor.
+     * @param modelCode to insert model code.
+     * @param companyName to insert company name.
+     * @param modelName to insert model name.
+     * @param engineCapacity to insert engine capacity.
+     * @param gearBox to insert gear box.
+     * @param seatsNumber to insert seats number.
+     */
     public CarsModel(int modelCode, String companyName, String modelName, int engineCapacity, Gearbox gearBox, int seatsNumber) {
         ModelCode = modelCode;
         CompanyName = companyName;
@@ -109,13 +123,11 @@ public class CarsModel {
     public void setSeatsNumber(int seatsNumber) {
         SeatsNumber = seatsNumber;
     }
-
+    /**
+     *
+     * @return string with all attribute of the class.
+     */
     public String toString() {
         return "Model Code: " + ModelCode + " Company Name: " + CompanyName + " Model Name: " + ModelName + "Engine Capacity: " + " Gear Box: " + GearBox + " Seat Numbers: " + SeatsNumber;
     }
-
-    //********ContentValues*******
-
-
-
 }

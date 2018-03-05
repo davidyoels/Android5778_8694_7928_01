@@ -1,8 +1,10 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
+import com.example.davidsalmon.android5778_8694_7928_01.model.datasource.MySQL_DBManager;
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Car;
 
 import java.util.List;
@@ -23,41 +26,65 @@ import java.util.List;
 
 public class CarFragment extends Fragment{
     public static final String TAB = "CarFragment";
+    FloatingActionButton addCar;
     List<Car> myCarList;
     ViewGroup viewGroup;
     View v;
+    /**
+     * @param inflater to convert xml to view.
+     * @param container of the screen.
+     * @param savedInstanceState
+     * @return the view to be display.
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.car_fragment,container,false);
         viewGroup = (ViewGroup) inflater.inflate(R.layout.car_fragment, container, false);
-        new AsyncTask<Void, View, List<Car>>() {
-
-            @Override
-            protected List<Car> doInBackground(Void... voids) {
-                initCarList(40);
-                return myCarList;
-            }
-        }.execute();
-        while (myCarList==null){}
         v = initCarByListView(100);
         return v;
     }
+
+    /**
+     * @param savedInstanceState
+     */
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        addCar = (FloatingActionButton) getActivity().findViewById(R.id.addFlaotingCar);
+        addCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AddCar.class));
+            }
+        });
+    }
+
+    /**
+     * gets the branch list form our database.
+     * @param size of the list.
+     */
     public  void initCarList (int size){
 
-        myCarList = FactoryMethod.getManager().AllCars();
+        myCarList = MySQL_DBManager.carsList;
     }
-    public View initCarByListView(int size){
 
+    /**
+     * this function makes the view fill with the cars list.
+     * @param size of the list.
+     * @return the view to be display.
+     */
+    public View initCarByListView(int size){
+        initCarList(size);
         ListView listView = new ListView(this.getActivity());
-        ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(this.getActivity(), R.layout.car_fragment, myCarList)
+        ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(this.getActivity(), R.layout.show_car_constraint, myCarList)
         {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
 
                 if (convertView == null)    {
-                    convertView = View.inflate(CarFragment.this.getActivity(), R.layout.car_fragment,null);
+                    convertView = View.inflate(CarFragment.this.getActivity(), R.layout.show_car_constraint,null);
                 }
 
                 TextView productId_carModel_TextView = (TextView) convertView.findViewById(R.id.carModel_id);
@@ -72,7 +99,6 @@ public class CarFragment extends Fragment{
                 return convertView;
             }
         };
-
 
         listView.setAdapter(adapter);
         viewGroup.addView(listView);

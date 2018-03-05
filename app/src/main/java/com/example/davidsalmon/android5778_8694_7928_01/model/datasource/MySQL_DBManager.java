@@ -21,17 +21,39 @@ import java.util.List;
  * Created by itay0 on 09/12/2017.
  */
 
+/**
+ * class that get interaction with our data that inserted and our database.
+ */
 public class MySQL_DBManager implements DB_manager {
 
     private final String UserName="itaamar";
     private final String WEB_URL = "http://"+UserName+".vlab.jct.ac.il/Car_and_Go/";
+    static public List<Branch> branchList = new ArrayList<Branch>();
+    static public List<CarsModel> carsModelList = new ArrayList<>();
+    static public List<Car> carsList = new ArrayList<>();
+    static public List<Client> clientList = new ArrayList<>();
 
 
+    /**
+     *  We did not implement this function here.
+     * -> We used this function in the List_DBManager class, because we decided to search the
+     *  client in the list we got in the beginning. in this way we don't need to call the sql table
+     *  and load all the client and then to search(less effective). <-
+     * @param ID of the client
+     * @return true if the user exist false otherwise.
+     */
     @Override
     public boolean UserExistsOnDataBase(Long ID) {
         return false;
     }
 
+    /**
+     * add new car model.
+     * the function send the new car model to php page that handle the "add function" and add the
+     * new car model to the car model table(in our sql database).
+     * @param newModel to be added.
+     * @return the car model id.
+     */
     @Override
     public int addModel(ContentValues newModel) {
         try{
@@ -50,6 +72,12 @@ public class MySQL_DBManager implements DB_manager {
         }
     }
 
+    /**
+     * delete existing car model.
+     * the function send the car model to be deleted to php page that handle the "delete function" and delete the
+     * car model from the car model table(in our sql database).
+     * @param id of the car model to be deleted.
+     */
     public void deleteModel(ContentValues id) {
         try{
             PHPtools.POST(WEB_URL + "/deleteCarModel.php", id);
@@ -60,6 +88,14 @@ public class MySQL_DBManager implements DB_manager {
         }
     }
 
+    /**
+     /**
+     * add new car.
+     * the function send the new car to php page that handle the "add function" and add the
+     * new car to the car table(in our sql database).
+     * @param newCar to be added
+     * @return "1" in case he succeed to add.
+     */
     @Override
     public String addCar(ContentValues newCar) {
 
@@ -75,6 +111,14 @@ public class MySQL_DBManager implements DB_manager {
             return null;
         }
     }
+
+    /**
+     * add new client.
+     * the function send the new client to php page that handle the "add function" and add the
+     * new client to the client table(in our sql database).
+     * @param newClient to be added
+     * @return the client id.
+     */
     @Override
     public long addUser(ContentValues newClient) {
 
@@ -93,6 +137,13 @@ public class MySQL_DBManager implements DB_manager {
         }
     }
 
+    /**
+     * add new branch.
+     * the function send the new branch to php page that handle the "add function" and add the
+     * new branch to the branch table(in our sql database).
+     * @param newBranch to be added
+     * @return the branch number.
+     */
     @Override
     public int addBranch(ContentValues newBranch) {
 
@@ -113,6 +164,10 @@ public class MySQL_DBManager implements DB_manager {
 
     }
 
+    /**
+     * the function use the php page that handel the "function that return all the cars model" to return all the cars model
+     * @return all the cars model.
+     */
     @Override
     public List<CarsModel> AllCarsModel() {
         List<CarsModel> result = new ArrayList<CarsModel>();
@@ -135,6 +190,10 @@ public class MySQL_DBManager implements DB_manager {
         return null;
     }
 
+    /**
+     * the function use the php page that handel the "function that return all the client" to return all the clients.
+     * @return all the clients.
+     */
     @Override
     public List<Client> AllUsers() {
         List<Client> result = new ArrayList<>();
@@ -157,6 +216,10 @@ public class MySQL_DBManager implements DB_manager {
         return null;
     }
 
+    /**
+     * the function use the php page that handel the "function that return all the branch" to return all the branch.
+     * @return all the branch.
+     */
     @Override
     public List<Branch> AllBranch() {
         List<Branch> result = new ArrayList<Branch>();
@@ -179,6 +242,10 @@ public class MySQL_DBManager implements DB_manager {
         return null;
     }
 
+    /**
+     * the function use the php page that handel the "function that return all the cars" to return all the cars.
+     * @return all the cars.
+     */
     @Override
     public List<Car> AllCars() {
         List<Car> result = new ArrayList<Car>();
@@ -212,7 +279,7 @@ public class MySQL_DBManager implements DB_manager {
 
 
 
-
+    //two function that printing to the screen - "the class properties/Exception".
     public void printLog(String message)
     {
         Log.d(this.getClass().getName(),"\n"+message);

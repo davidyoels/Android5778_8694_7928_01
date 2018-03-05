@@ -14,8 +14,13 @@ import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.Car_GoConst;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
 
+/**
+ * this class is the code behind of the activity_add_branch that handel his events.
+ * class that add a new Branch.
+ */
 public class AddBracnh extends Activity implements View.OnClickListener {
 
+    //definition for the instance views we will get.
     private EditText CityEditText;
     private EditText StreetEditText;
     private EditText BuildingNumberEditText;
@@ -23,6 +28,10 @@ public class AddBracnh extends Activity implements View.OnClickListener {
     private EditText BranchNumberEditText;
     private Button addBracnhButton;
 
+    /**
+     * the findViews function gets the instance of the views.
+     * and make the add button to listen the click event.
+     */
     void findViews()
     {
         CityEditText = (EditText) findViewById(R.id.CityEditText);
@@ -34,7 +43,10 @@ public class AddBracnh extends Activity implements View.OnClickListener {
         addBracnhButton.setOnClickListener( this );
     }
 
-
+    /**
+     * the function create the activity and find the views.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +54,10 @@ public class AddBracnh extends Activity implements View.OnClickListener {
         findViews();
     }
 
-
+    /**
+     * check if the click is the add button click
+     * @param v represent the view of the event that have been occurred.
+     */
     public void onClick(View v)
     {
       if (v == addBracnhButton)
@@ -50,7 +65,10 @@ public class AddBracnh extends Activity implements View.OnClickListener {
 
     }
 
-
+    /**
+     * the function take all the information that has been insert and send it by thread in the background to
+     * php page and add the new Branch.
+     */
     @SuppressLint("StaticFieldLeak")
     void addBracnh() {
         final ContentValues contentValues = new ContentValues();

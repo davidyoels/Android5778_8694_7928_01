@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLay"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="match_parent"
     android:background="#323232"
     android:orientation="vertical"
     android:weightSum="1">
@@ -187,27 +187,29 @@
         tools:layout_editor_absoluteY="-1dp" />
         </android.support.constraint.ConstraintLayout>
  !-->
+    <ListView
+        android:id="@+id/lsitViewClient"
+        android:layout_width="match_parent"
+        android:layout_height="440dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/addfloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true"
-        android:layout_gravity="bottom|end"
-        android:clipToPadding="false"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="68dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
         android:clickable="true"
-        android:focusableInTouchMode="false"
-        android:overScrollMode="ifContentScrolls"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.975"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.904"
+        android:focusable="true"
+        android:visibility="visible"
+        app:backgroundTintMode="src_atop"
+        app:fabSize="normal"
+        app:rippleColor="#FFFFFF"
         app:srcCompat="@android:drawable/ic_input_add" />
 </RelativeLayout>

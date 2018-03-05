@@ -4,6 +4,9 @@ package com.example.davidsalmon.android5778_8694_7928_01.model.entities;
  * Created by david salmon on 11/4/2017.
  */
 
+/**
+ * Client class represents the clients that rent the cars.
+ */
 public class Client {
     private String FamilyName;
     private String PrivateName;
@@ -12,24 +15,31 @@ public class Client {
     private String email;
     private long CreditCard;
 
-    // default constructor.
+    /**
+     * default constructor.
+     */
     public Client() {
     }
 
-    public void setId(long id) {
-        Id = id;
-    }
 
-    //constructor.
+    /**
+     * constructor.
+     * @param familyName to insert family name.
+     * @param privateName to insert private name.
+     * @param id to insert id.
+     * @param phoneNumber to insert phone number.
+     * @param email to insert email.
+     * @param creditCard to insert credit card.
+     */
     public Client(String familyName, String privateName, long id, String phoneNumber, String email, long creditCard) {
         FamilyName = familyName;
         PrivateName = privateName;
         Id = id;
-
         PhoneNumber = phoneNumber;
         this.email = email;
         CreditCard = creditCard;
     }
+
 
     /**
      * @return the client family name.
@@ -81,6 +91,13 @@ public class Client {
     }
 
     /**
+     * @param id to change the current id.
+     */
+    public void setId(long id) {
+        Id = id;
+    }
+
+    /**
      * @return the client email.
      */
     public String getEmail() {
@@ -108,11 +125,11 @@ public class Client {
         CreditCard = creditCard;
     }
 
+    /**
+     * @return string with all attribute of the class.
+     */
     public String toString()
     {
         return "Name: " + PrivateName + " " + FamilyName + " Id: " + Id + " Phone Number: " + PhoneNumber + " Email: " + email + " Credit Card: " + CreditCard;
     }
-
-    //********ContentValues*******
-
 }

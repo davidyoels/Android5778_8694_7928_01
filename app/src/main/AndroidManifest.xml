@@ -24,18 +24,12 @@
         <activity android:name=".controller.ShowClient" />
         <activity android:name=".controller.ShowCarsModelList" />
         <activity android:name=".controller.ShowBranchsList" />
-        <activity
-            android:name=".controller.Main3Activity"
-            android:label="@string/title_activity_main3"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".controller.Main3Activity" android:label="@string/title_activity_main3"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
 </manifest>

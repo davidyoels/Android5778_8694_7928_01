@@ -1,21 +1,35 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.davidsalmon.android5778_8694_7928_01.R;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.DB_manager;
 import com.example.davidsalmon.android5778_8694_7928_01.model.backend.FactoryMethod;
+import com.example.davidsalmon.android5778_8694_7928_01.model.datasource.MySQL_DBManager;
+import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client;
 
-public class MainActivity extends Activity implements View.OnClickListener{
+import java.util.List;
+
+public class MainActivity extends Activity {
 
     FactoryMethod a = new FactoryMethod();
 
     public DB_manager b;
 
+    ConnectionDetector connectionDetector;
+    //definition for the instance views we will get.
     private Button button;
     private Button addCarButton;
     private Button addBranchButton;
@@ -26,113 +40,84 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private Button showCarsModelButton;
     private Button showBranchsButton;
     private Button openTabs;
+
+    /**
+     * @param savedInstanceState
+     */
+    @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //create one
         b = a.getManager();
+        //thread to get all our lists fronm our database.
+        new AsyncTask<Void, Void, Void>() {
+            /**
+             * @param aVoid no params.
+             */
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                Intent intent = new Intent(MainActivity.this, Main3Activity.class);
+                startActivity(intent);
+            }
 
-        findViews();
-    }
+            /**
+             * @param voids no params.
+             * @return null
+             */
+            @Override
+            protected Void doInBackground(Void... voids) {
+                MySQL_DBManager.branchList = FactoryMethod.getManager().AllBranch();
+                MySQL_DBManager.carsModelList = FactoryMethod.getManager().AllCarsModel();
+                MySQL_DBManager.carsList = FactoryMethod.getManager().AllCars();
+                MySQL_DBManager.clientList = FactoryMethod.getManager().AllUsers();
+                return null;
+            }
+        }.execute();
 
-
-    void findViews() {
-        addCarButton = (Button) findViewById(R.id.addCarButton);
-        addBranchButton = (Button) findViewById(R.id.addBranchButton);
-        addCarModelButton = (Button) findViewById(R.id.addCarModelButton);
-        addClientButton = (Button) findViewById(R.id.addClientButton);
-        showCarsButton = (Button) findViewById(R.id.showCarsButton);
-        showClientButton = (Button) findViewById(R.id.showClientButton);
-        showCarsModelButton = (Button) findViewById(R.id.showCarsModelButton);
-        showBranchsButton = (Button) findViewById(R.id.showBranchesButton);
-        openTabs = (Button) findViewById(R.id.openTabs);
-
-        addCarButton.setOnClickListener(this);
-        addBranchButton.setOnClickListener(this);
-        addCarModelButton.setOnClickListener(this);
-        addClientButton.setOnClickListener(this);
-        showCarsButton.setOnClickListener(this);
-        showClientButton.setOnClickListener(this);
-        showCarsModelButton.setOnClickListener(this);
-        showBranchsButton.setOnClickListener(this);
-        openTabs.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v == addCarButton) {
-            addCar();
-        } else if
-                (v == addCarModelButton) {
-            addCarModel();
-        } else if
-                (v == addClientButton) {
-            addClient();
-        } else if
-                (v == addBranchButton) {
-            addBranch();
-        } else if
-                (v == showCarsButton) {
-            showCars();
-        } else if
-                (v == showClientButton) {
-            showClients();
-        } else if
-                (v == showCarsModelButton) {
-            showCarsModel();
-        } else if
-                (v == showBranchsButton) {
-            showBranchs();
-        } else if
-                (v == openTabs) {
-            open_Tabs();
+        //instance of the connection to be check.
+        connectionDetector = new ConnectionDetector(this);
+        if(connectionDetector.isConnected()) {
+            Toast.makeText(MainActivity.this, "Connected", Toast.LENGTH_SHORT).show();
         }
+        else
+            Toast.makeText(MainActivity.this,"Not Connected", Toast.LENGTH_SHORT).show();
+
+
     }
 
-    private void addCar()
-    {
-        Intent intent = new Intent(this,AddCar.class);
-        startActivity(intent);
-    }
-    private void addCarModel()
-    {
-        Intent intent = new Intent(this,AddCarModel.class);
-        startActivity(intent);
-    }
-    private void addClient()
-    {
-        Intent intent = new Intent(this,AddClient.class);
-        startActivity(intent);
-    }
-    private void addBranch()
-    {
-        Intent intent = new Intent(this,AddBracnh.class);
-        startActivity(intent);
-    }
-    private void showCars()
-    {
-        Intent intent = new Intent(this, ShowCarsList.class);
-        startActivity(intent);
-    }
-    private void showClients()
-    {
-        Intent intent = new Intent(this, ShowClient.class);
-        startActivity(intent);
-    }
-    private void showCarsModel()
-    {
-        Intent intent = new Intent(this,ShowCarsModelList.class);
-        startActivity(intent);
-    }
-    private void showBranchs()
-    {
-        Intent intent = new Intent(this,ShowBranchsList.class);
-        startActivity(intent);
-    }
-    private void open_Tabs()
-    {
-        Intent intent = new Intent(this,Main3Activity.class);
-        startActivity(intent);
+    /**
+     * class that check the internet connection.
+     */
+    public class ConnectionDetector {
+        Context context;
+
+        /**
+         * @param context to change the current context.
+         */
+        public ConnectionDetector(Context context){
+            this.context = context;
+        }
+
+        /**
+         * this function check the status of the internet connection.
+         * @return true if the connection is open false otherwise.
+         */
+        public boolean isConnected()
+        {
+            ConnectivityManager connectivity = (ConnectivityManager)
+                    context.getSystemService(Service.CONNECTIVITY_SERVICE);
+            if(connectivity != null)
+            {
+                NetworkInfo info = connectivity.getActiveNetworkInfo();
+                if(info != null)
+                {
+                    if(info.getState() == NetworkInfo.State.CONNECTED)
+                        return true;
+                }
+            }
+            return false;
+        }
     }
 }

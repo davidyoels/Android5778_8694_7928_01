@@ -12,7 +12,9 @@ import java.util.List;
  * Created by david salmon on 11/3/2017.
  */
 
-
+/**
+ * List_DBManager class manage the application with lists and actions on them(add/userExist?..etc)
+ */
 public class List_DBManager implements DB_manager {
     static List<Branch> branchs;
     static List<Car> cars;
@@ -28,7 +30,10 @@ public class List_DBManager implements DB_manager {
         invitations = new ArrayList<>();
     }
 
-
+    /**
+     * @param ID of the client to search.
+     * @return true if the user exist false otherwise.
+     */
     @Override
     public boolean UserExistsOnDataBase(Long ID) {
         int ClientsMount = clients.size();
@@ -38,6 +43,10 @@ public class List_DBManager implements DB_manager {
         return false;
     }
 
+    /**
+     * @param newClient added to clients list.
+     * @return the id of the new client.
+     */
     @Override
     public long addUser(ContentValues newClient) {
         Client client = Car_GoConst.ContentValuesToClient(newClient);
@@ -45,6 +54,10 @@ public class List_DBManager implements DB_manager {
         return client.getId();
     }
 
+    /**
+     * @param newModel added to cars model list.
+     * @return the id of the new car model.
+     */
     @Override
     public int addModel(ContentValues newModel) {
         CarsModel model = Car_GoConst.ContentValuesToCarModel(newModel);
@@ -52,12 +65,21 @@ public class List_DBManager implements DB_manager {
         return model.getModelCode();
     }
 
+    /**
+     * @param newCar added to car list.
+     * @return the car number.
+     */
     @Override
     public String addCar(ContentValues newCar) {
         Car car = Car_GoConst.ContentValuesToCar(newCar);
         cars.add(car);
         return car.getCarNumber();
     }
+
+    /**
+     * @param newBranch added to branch list.
+     * @return the branch number.
+     */
     @Override
     public int addBranch(ContentValues newBranch) {
         Branch branch = Car_GoConst.ContentValuesToBranch(newBranch);
@@ -65,26 +87,44 @@ public class List_DBManager implements DB_manager {
         return branch.getBranchNumber();
     }
 
+    /**
+     * @return the cars model list.
+     */
     @Override
     public List<CarsModel> AllCarsModel() {
         return carsModels;
     }
 
+    /**
+     * @return the client list.
+     */
     @Override
     public List<Client> AllUsers() {
         return clients;
     }
 
+    /**
+     * @return the branch list.
+     */
     @Override
     public List<Branch> AllBranch() {
         return branchs;
     }
 
+    /**
+     * @return the cars list.
+     */
     @Override
     public List<Car> AllCars() {
         return cars;
     }
 
+    /**
+     * we didn't implemented this function here,
+     * we implemented this function in MySQL_DBManager.
+     * we did it just because we have to implement everything in the DB_manager interface .
+     * @param _idDel id of client to be deleted.
+     */
     @Override
     public void deleteModel(ContentValues _idDel) {
 
