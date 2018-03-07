@@ -100,13 +100,20 @@ public class Car {
         CarNumber = carNumber;
     }
 
+    /**
+     * @return true if the car in use, false otherwise.
+     */
     public boolean isInUse() {
         return InUse;
     }
 
+    /**
+     * @param inUse to change the inUse true/false.
+     */
     public void setInUse(boolean inUse) {
         InUse = inUse;
     }
+
     /**
      *
      * @return string with all attribute of the class.
