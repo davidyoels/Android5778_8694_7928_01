@@ -92,7 +92,7 @@ public class Car_GoConst {
         car.setBranchNumber(contentValues.getAsInteger(Car_GoConst.CarConst.BRANCH_NUMBER));
         car.setModelType(contentValues.getAsInteger(Car_GoConst.CarConst.MODEL_TYPE));
         car.setKilometers(contentValues.getAsInteger(Car_GoConst.CarConst.KILOMETERS));
-        car.setCarNumber(contentValues.getAsInteger(Car_GoConst.CarConst.CAR_NUMBER));
+        car.setCarNumber(contentValues.getAsInteger(Car_GoConst.CarConst.CAR_NUMBER).toString());
         car.setInUse(contentValues.getAsBoolean(CarConst.IN_USE));
         return car;
     }

@@ -18,6 +18,11 @@ public class Car {
     private int Kilometers;
     private String CarNumber;
 
+
+
+    private boolean InUse;
+
+
     /**
      * default constructor.
      */
@@ -80,6 +85,7 @@ public class Car {
         Kilometers = kilometers;
     }
 
+
     /**
      * @return the car number.
      */
@@ -94,6 +100,13 @@ public class Car {
         CarNumber = carNumber;
     }
 
+    public boolean isInUse() {
+        return InUse;
+    }
+
+    public void setInUse(boolean inUse) {
+        InUse = inUse;
+    }
     /**
      *
      * @return string with all attribute of the class.

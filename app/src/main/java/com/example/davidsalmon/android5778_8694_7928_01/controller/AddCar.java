@@ -134,20 +134,27 @@ public class AddCar extends Activity implements View.OnClickListener  {
                 contentValues.put(Car_GoConst.CarConst.KILOMETERS, kilometers);
                 contentValues.put(Car_GoConst.CarConst.CAR_NUMBER, car_number);
 
-                new AsyncTask<Void,Void,String>(){
+                new AsyncTask<Void,Void,Integer>(){
 
 
                     @Override
-                    protected String doInBackground(Void... voids) {
-                        String resoult =  FactoryMethod.getManager().addCar(contentValues);
-                        return car_number;
+                    protected Integer doInBackground(Void... voids) {
+
+
+                        int result = 0;
+                        try {
+                            result = FactoryMethod.getManager().addCar(contentValues);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        return result;
                     }
 
                     @Override
-                    protected void onPostExecute(String idResult) { //where idResult came??
+                    protected void onPostExecute(Integer idResult) {
                         super.onPostExecute(idResult);
-                        idResult = car_number;
-                        if (! idResult.isEmpty())
+                        //idResult = car_number; //this is kind of solution.
+                        if ( idResult != 0)
                             Toast.makeText(getBaseContext(), "insert id: " + idResult, Toast.LENGTH_LONG).show();
                     }
                 }.execute();
