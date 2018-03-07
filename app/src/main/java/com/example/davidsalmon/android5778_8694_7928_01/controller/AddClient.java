@@ -44,7 +44,8 @@ public class AddClient extends Activity implements View.OnClickListener{
     }
     /**
      * the function create the activity and find the views.
-     * @param savedInstanceState
+     * @param savedInstanceState contains the most recent data, specially contains
+     * data of the activity's previous initialization part.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

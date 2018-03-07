@@ -22,14 +22,22 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client;
 
 import java.util.List;
 
+/**
+ * class for the loading screen while all the lists are download.
+ */
 public class MainActivity extends Activity {
 
     FactoryMethod a = new FactoryMethod();
 
     public DB_manager b;
 
+    /*
+     * instance to check the connection status.
+     */
     ConnectionDetector connectionDetector;
-    //definition for the instance views we will get.
+    /*
+     * definition for the instance views we will get.
+     */
     private Button button;
     private Button addCarButton;
     private Button addBranchButton;
@@ -42,16 +50,18 @@ public class MainActivity extends Activity {
     private Button openTabs;
 
     /**
-     * @param savedInstanceState
+     * @param savedInstanceState contains the most recent data, specially contains
+     * data of the activity's previous initialization part.
      */
     @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //create one
-        b = a.getManager();
-        //thread to get all our lists fronm our database.
+        b = FactoryMethod.getManager();
+        /*
+         * thread to get all our lists from our database.
+         */
         new AsyncTask<Void, Void, Void>() {
             /**
              * @param aVoid no params.
@@ -63,6 +73,7 @@ public class MainActivity extends Activity {
             }
 
             /**
+             * download all the lists in background.
              * @param voids no params.
              * @return null
              */
@@ -76,14 +87,15 @@ public class MainActivity extends Activity {
             }
         }.execute();
 
-        //instance of the connection to be check.
+        /*
+         * Instance of the connection to be check.
+         * Checked the connection and make Toast of "connected" in case everything ok, "Not Connected" otherwise.
+         */
         connectionDetector = new ConnectionDetector(this);
-        if(connectionDetector.isConnected()) {
+        if (connectionDetector.isConnected()) {
             Toast.makeText(MainActivity.this, "Connected", Toast.LENGTH_SHORT).show();
-        }
-        else
-            Toast.makeText(MainActivity.this,"Not Connected", Toast.LENGTH_SHORT).show();
-
+        } else
+            Toast.makeText(MainActivity.this, "Not Connected", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -96,7 +108,7 @@ public class MainActivity extends Activity {
         /**
          * @param context to change the current context.
          */
-        public ConnectionDetector(Context context){
+        public ConnectionDetector(Context context) {
             this.context = context;
         }
 
@@ -104,16 +116,13 @@ public class MainActivity extends Activity {
          * this function check the status of the internet connection.
          * @return true if the connection is open false otherwise.
          */
-        public boolean isConnected()
-        {
+        public boolean isConnected() {
             ConnectivityManager connectivity = (ConnectivityManager)
                     context.getSystemService(Service.CONNECTIVITY_SERVICE);
-            if(connectivity != null)
-            {
+            if (connectivity != null) {
                 NetworkInfo info = connectivity.getActiveNetworkInfo();
-                if(info != null)
-                {
-                    if(info.getState() == NetworkInfo.State.CONNECTED)
+                if (info != null) {
+                    if (info.getState() == NetworkInfo.State.CONNECTED)
                         return true;
                 }
             }

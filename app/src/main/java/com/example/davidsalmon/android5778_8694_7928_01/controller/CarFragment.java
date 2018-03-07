@@ -33,7 +33,8 @@ public class CarFragment extends Fragment{
     /**
      * @param inflater to convert xml to view.
      * @param container of the screen.
-     * @param savedInstanceState
+     * @param savedInstanceState contains the most recent data, specially contains
+     * data of the activity's previous initialization part.
      * @return the view to be display.
      */
     @Nullable
@@ -46,7 +47,8 @@ public class CarFragment extends Fragment{
     }
 
     /**
-     * @param savedInstanceState
+     * @param savedInstanceState contains the most recent data, specially contains
+     * data of the activity's previous initialization part.
      */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

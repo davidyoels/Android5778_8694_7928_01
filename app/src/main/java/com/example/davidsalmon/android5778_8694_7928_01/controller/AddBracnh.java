@@ -68,7 +68,7 @@ public class AddBracnh extends Activity implements View.OnClickListener {
 
     /**
      * the function take all the information that has been insert and send it by thread in the background to
-     * php page and add the new Branch.
+     * php page to add the new Branch.
      */
     @SuppressLint("StaticFieldLeak")
     void addBracnh() {

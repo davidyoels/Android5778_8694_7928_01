@@ -15,16 +15,23 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch;
 
 import java.util.List;
 
-
+/**
+ *
+ */
 public class ShowBranchsList extends AppCompatActivity {
     List<Branch> myBranchsList;
-
+    /**
+     * @param savedInstanceState contains the most recent data, specially contains
+     * data of the activity's previous initialization part.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_branchs_list);
         final ListView listView = new ListView(this);
-
+        /*
+          thread that download the BranchList in the background.
+         */
         new AsyncTask<Void,Void,ArrayAdapter>(){
 
 
