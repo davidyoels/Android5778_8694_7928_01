@@ -3,6 +3,7 @@ package com.example.davidsalmon.android5778_8694_7928_01.controller;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,7 @@ public class AddCar extends Activity implements View.OnClickListener  {
     private EditText KilometersEditText;
     private EditText CarNumberEditText;
     private Button addCarButton;
+    private Button addNewCarModel;
     private Spinner ModelTypeEditText_spinner;
 
     List<CarsModel> CarsModel_list = new ArrayList<CarsModel>();
@@ -50,8 +52,9 @@ public class AddCar extends Activity implements View.OnClickListener  {
         KilometersEditText = (EditText) findViewById(R.id.KilometersEditText);
         CarNumberEditText = (EditText) findViewById(R.id.CarNumberEditText);
         addCarButton = (Button) findViewById(R.id.addCarButton);
+        addNewCarModel = (Button) findViewById(R.id.addNewCarModel);
         addCarButton.setOnClickListener(this);
-
+        addNewCarModel.setOnClickListener(this);
         //from list of model type to spinner
          ModelTypeEditText_spinner = (Spinner) findViewById(R.id.ModelTypeEditText_spinner);
         new AsyncTask<Void, Void, List<CarsModel>>() {
@@ -109,6 +112,8 @@ public class AddCar extends Activity implements View.OnClickListener  {
     {
         if (v==addCarButton)
             addCar();
+        else if(v==addNewCarModel)
+            startActivity(new Intent(this,AddCarModel.class));
     }
 
     /**
