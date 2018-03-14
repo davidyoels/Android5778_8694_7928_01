@@ -20,6 +20,10 @@ public class ShowCarsList extends AppCompatActivity {
 
     private List<Car> myCarList;
 
+    /**
+     * @param savedInstanceState contains the most recent data, specially contains
+     * data of the activity's previous initialization part.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

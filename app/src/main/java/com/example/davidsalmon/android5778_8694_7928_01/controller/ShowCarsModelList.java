@@ -1,5 +1,6 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -7,6 +8,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -31,7 +33,11 @@ public class ShowCarsModelList extends Activity {
 
     public List<CarsModel> myCarsModel;
 
-
+    /**
+     * @param savedInstanceState contains the most recent data, specially contains
+     * data of the activity's previous initialization part.
+     */
+    @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +59,9 @@ public class ShowCarsModelList extends Activity {
 
                 ArrayAdapter<CarsModel>adapter = new ArrayAdapter<CarsModel>(getBaseContext(), R.layout.activity_show_cars_model_list, myCarsModel) {
 
+                    @NonNull
                     @Override
-                    public View getView(int position, View convertView, ViewGroup parent) {
+                    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
                         if (convertView == null) {
                             convertView = View.inflate(ShowCarsModelList.this, R.layout.activity_show_cars_model_list, null);

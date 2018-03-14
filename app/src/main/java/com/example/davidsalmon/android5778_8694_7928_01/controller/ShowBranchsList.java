@@ -15,9 +15,7 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Branch;
 
 import java.util.List;
 
-/**
- *
- */
+
 public class ShowBranchsList extends AppCompatActivity {
     List<Branch> myBranchsList;
     /**

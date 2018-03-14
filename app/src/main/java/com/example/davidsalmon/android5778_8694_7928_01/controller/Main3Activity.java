@@ -1,6 +1,8 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.os.Process;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.davidsalmon.android5778_8694_7928_01.R;
+import com.example.davidsalmon.android5778_8694_7928_01.model.datasource.List_DBManager;
+import com.example.davidsalmon.android5778_8694_7928_01.model.datasource.MySQL_DBManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,4 +152,18 @@ public class Main3Activity extends  AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    /**
+     * this function destroy the all application so the user won't see the loading screen.
+     * the process calling the killProcess method to kill the process that specified (by his id).
+     */
+    @Override
+    protected void onDestroy() {
+        Process.killProcess(Process.myPid());
+        super.onDestroy();
+    }
 }

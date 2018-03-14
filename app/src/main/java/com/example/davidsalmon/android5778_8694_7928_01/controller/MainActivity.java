@@ -1,6 +1,8 @@
 package com.example.davidsalmon.android5778_8694_7928_01.controller;
 
 import android.annotation.SuppressLint;
+import android.media.MediaPlayer;
+import android.os.Process;
 import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
@@ -9,9 +11,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.Toast;
 
 import com.example.davidsalmon.android5778_8694_7928_01.R;
@@ -21,12 +25,14 @@ import com.example.davidsalmon.android5778_8694_7928_01.model.datasource.MySQL_D
 import com.example.davidsalmon.android5778_8694_7928_01.model.entities.Client;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * class for the loading screen while all the lists are download.
  */
 public class MainActivity extends Activity {
 
+    private TextToSpeech mTTs;
     FactoryMethod a = new FactoryMethod();
 
     public DB_manager b;
@@ -51,7 +57,7 @@ public class MainActivity extends Activity {
 
     /**
      * @param savedInstanceState contains the most recent data, specially contains
-     * data of the activity's previous initialization part.
+     *                           data of the activity's previous initialization part.
      */
     @SuppressLint("StaticFieldLeak")
     @Override
@@ -59,6 +65,29 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         b = FactoryMethod.getManager();
+        /*
+           this will cause the speaker to say the text we will enter.
+         */
+        mTTs = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status == TextToSpeech.SUCCESS)//checking SUCCESS
+                {
+                    int result = mTTs.setLanguage(Locale.ENGLISH);//change the language to english.
+                    //check if missing data or this language not supported.
+                    if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+                          Log.e("TTS","LANG NOT SUPPORTED");
+                    else
+                    {
+                        String text = "welcome to the car rent company";// the text will be played.
+                        mTTs.setPitch(0.655f); // set the pitch.
+                        mTTs.setSpeechRate(1.0f);//set the speed of the speech
+                        mTTs.speak(text,TextToSpeech.QUEUE_FLUSH,null);//will cause the text to be heard.
+                    }
+                }
+            }
+        });
+
         /*
          * thread to get all our lists from our database.
          */
@@ -100,6 +129,20 @@ public class MainActivity extends Activity {
     }
 
     /**
+     * override of the function onDestroy.
+     * checking if the mTTc is not been destroyed if he didn't destroyed so he will stop and shutdown him.
+     */
+    @Override
+    protected void onDestroy() {
+        if(mTTs!=null)
+        {
+            mTTs.stop();
+            mTTs.shutdown();
+        }
+        super.onDestroy();
+    }
+
+    /**
      * class that check the internet connection.
      */
     public class ConnectionDetector {
@@ -114,6 +157,7 @@ public class MainActivity extends Activity {
 
         /**
          * this function check the status of the internet connection.
+         *
          * @return true if the connection is open false otherwise.
          */
         public boolean isConnected() {
@@ -129,4 +173,6 @@ public class MainActivity extends Activity {
             return false;
         }
     }
+
+
 }

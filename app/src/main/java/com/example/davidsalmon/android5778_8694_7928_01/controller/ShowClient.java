@@ -18,6 +18,10 @@ import java.util.List;
 public class ShowClient extends AppCompatActivity {
     List<Client> myClientList;
 
+    /**
+     * @param savedInstanceState contains the most recent data, specially contains
+     * data of the activity's previous initialization part.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

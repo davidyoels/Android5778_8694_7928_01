@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.davidsalmon.android5778_8694_7928_01">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/goldencarlogo"
@@ -24,12 +27,9 @@
         <activity android:name=".controller.ShowClient" />
         <activity android:name=".controller.ShowCarsModelList" />
         <activity android:name=".controller.ShowBranchsList" />
-        <activity android:name=".controller.Main3Activity" android:label="@string/title_activity_main3"/>
-
-
+        <activity
+            android:name=".controller.Main3Activity"
+            android:label="@string/title_activity_main3" />
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
 </manifest>
